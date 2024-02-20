@@ -1,0 +1,143 @@
+body {
+    background-color: #FCEBF9;
+    color: #302D30;
+    font-family: Arial, sans-serif;
+
+        align-items: center;
+    justify-content: space-between; /* Added to create space between logo and other content */
+    text-align: center; 
+    padding-top: 100px; /* Adjust this value based on the header height */
+    padding-bottom: 40px; /* Adjust this value based on the footer height */
+}
+
+
+#header {
+    background-color: #5EFC8D;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the header is above other content */
+}
+
+#slogan {
+    max-height: 80px; /* Ensure the slogan matches the height of the logo */
+    margin-left: 10px; /* Add some spacing between the logo and slogan */
+    width: auto;
+}
+
+#logo {
+    align-self: flex-start; /* Align the logo to the top of the container */
+}
+
+#bar a {
+    color: coral;
+    text-decoration: none;
+}
+
+#bar a:hover {
+    text-decoration: underline;
+}
+
+#bar p {
+    margin: 0;
+}
+
+#footer {
+    background-color: #5EFC8D;
+    padding: 5px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-form {
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.radio-group, .checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.radio-group input, .checkbox-group input {
+    margin-right: 10px;
+}
+/* Existing CSS */
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-form {
+    width: 400px;
+}
+
+.form-border {
+    border: 2px solid #333;
+    padding: 20px;
+}
+
+/* Existing CSS */
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-form {
+    width: 400px;
+}
+
+.form-border {
+    border: 2px solid #333;
+    padding: 20px;
+}
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-form {
+    width: 400px;
+}
