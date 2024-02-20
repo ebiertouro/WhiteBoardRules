@@ -1,3 +1,58 @@
+/* Navigation */
+
+.navigation {
+    box-sizing: border-box;
+    overflow: auto;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    margin: 0 !important;
+}
+
+#slogan {
+    max-height: 80px; /* Ensure the slogan matches the height of the logo */
+    margin-left: 10px; /* Add some spacing between the logo and slogan */
+    margin-right: 10px;
+    width: auto;
+}
+
+#logo {
+    align-self: flex-start; /* Align the logo to the top of the container */
+    margin-top:5px;
+    margin-bottom:10px;
+}
+
+.navItem {
+    color: #FFF !important;
+    display: inline-block;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.navA {
+    color: #FFF;
+    text-decoration: none;
+    padding: 20px 18px 20px 18px;
+    font-weight: 900;
+    border-radius: 25px;
+}
+
+.navA:hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #082D0F;
+}
+
+.activeA {
+    color: #082D0F;
+    font-weight: 900;
+}
+
+/* Body */
+
 body {
     background-color: #FCEBF9;
     color: #302D30;
@@ -13,7 +68,6 @@ body {
 
 #header {
     background-color: #5EFC8D;
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,15 +78,7 @@ body {
     z-index: 1000; /* Ensure the header is above other content */
 }
 
-#slogan {
-    max-height: 80px; /* Ensure the slogan matches the height of the logo */
-    margin-left: 10px; /* Add some spacing between the logo and slogan */
-    width: auto;
-}
 
-#logo {
-    align-self: flex-start; /* Align the logo to the top of the container */
-}
 
 #bar a {
     color: coral;
