@@ -58,18 +58,41 @@ body {
 
 .login-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    min-height: 100vh; /* Use min-height instead of height */
+}
+
+.form-container {
+    text-align: center;
 }
 
 .login-form {
-    width: 300px;
+    width: 400px;
+}
+
+.form-border {
+    border: 2px solid #333;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in the total width/height */
 }
 
 .form-group {
     margin-bottom: 15px;
+}
+
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
 }
 
 button {
@@ -82,62 +105,4 @@ button {
 
 button:hover {
     background-color: #45a049;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.radio-group, .checkbox-group {
-    display: flex;
-    align-items: center;
-}
-
-.radio-group input, .checkbox-group input {
-    margin-right: 10px;
-}
-/* Existing CSS */
-
-.login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.login-form {
-    width: 400px;
-}
-
-.form-border {
-    border: 2px solid #333;
-    padding: 20px;
-}
-
-/* Existing CSS */
-
-.login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.login-form {
-    width: 400px;
-}
-
-.form-border {
-    border: 2px solid #333;
-    padding: 20px;
-}
-.login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.login-form {
-    width: 400px;
 }
