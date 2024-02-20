@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Sign-Up</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
-</head>
-<body>
-    <?php include "header.php"; ?>
+    <?php 
+        $title = "Teacher Sign-Up";
+        include "header.php"; 
+    ?>
+
 
      <div class="login-container">
         <div class="form-container">
@@ -77,5 +72,4 @@
     </div>
 
     <?php include "footer.php"; ?>
-</body>
-</html>
+

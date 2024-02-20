@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Grade</title>
+    <?php 
+        $title = "Add Grade";
+        include "header.php"; 
+    ?>
 
-    <?php include "header.php"; ?>
     <h1>Add Grade</h1>
     
     <form method="post" action="process_grade.php">

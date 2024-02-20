@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Response</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <?php 
+        $title = "Login Response";
+        include "header.php"; 
+    ?>
+
     <h1>Login Response</h1>
 
     <?php
@@ -25,5 +21,5 @@
         echo "<p>Certified: " . htmlspecialchars($_POST['certified']) . "</p>";
     }
     ?>
-</body>
-</html>
+
+<?php include "footer.php"; ?>
