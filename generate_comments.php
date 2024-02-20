@@ -1,4 +1,7 @@
-<?php include "header.php"; ?>
+    <?php 
+        $title = "Comment Generater";
+        include "header.php"; 
+    ?>
     <h1>Generate Report Card Comments</h1>
 
     <form method="post" action="process_comments.php">

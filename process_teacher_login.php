@@ -1,13 +1,8 @@
-<!-- signup_response.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-Up Response</title>
-</head>
-<body>
-    <?php include "header.php"; ?>
+    <?php 
+        $title = "Sign-Up Response";
+        include "header.php"; 
+    ?>
+
 
     <div class="response-container">
         <h1>Sign-Up Response</h1>
@@ -26,7 +21,6 @@
     </div>
 
     <?php include "footer.php"; ?>
-</body>
-</html>
+
 
 
