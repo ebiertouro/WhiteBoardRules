@@ -65,7 +65,6 @@ body {
     padding-bottom: 40px; /* Adjust this value based on the footer height */
 }
 
-
 #header {
     background-color: #5EFC8D;
     display: flex;
@@ -142,7 +141,7 @@ h2 {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #5EFC8D;
     color: white;
     padding: 10px;
     border: none;
