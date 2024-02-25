@@ -1,34 +1,31 @@
-//login response
-
-    <?php
+   <?php 
+        $title = "Sign-Up Response";
+        include "header.php"; 
+    session_start();
     
     $UserNameArray = ['e.shapiro', 's.israel', 'professor'];
     $PasswordArray = ['xxx', '1234', 'iloveteaching'];
    
    
     $postedUsername = isset($_POST['username']) ? $_POST['username'] : '';
+    $postedPassword = isset($_POST['password']) ? $_POST['password'] : '';
 
 // Check if the posted username is in the array
-    if (in_array($postedUsername, $usernamesArray)) {
-         /*
-    * 2) response page - checks username and password against arrays of 
-    * valid usernames and passwords (normally this is done against a database - we'll change it later)
-
-If valid - saves username to a cookie, and sets session variable LoggedIn to TRUE. If not, sets the session variable to FALSE.
-
-Displays link to "content page" (the page you're protecting).
-
-3) content page - checks session variable - if the user is logged in (session variable is true),
-    *  says Hello "XXXX" where XXXX is the username from the cookie.
-
-    */
+    if (in_array($postedUsername, $UserNameArray) && in_array($postedPassword, $PasswordArray)) {
+              setcookie('UserName', $postedUsername);
+              //set the session status to logged in
+          $_SESSION["LoggedIn"] = TRUE;
+          //direct the user to the content page
+          
     }
     else {
-     /*   If not logged in, displays an error message and link it back to the login page. 
-    * (If you want, you can have it redirect automatically after a certain number of seconds using a meta refresh tag.)
-    */
-    }
-  
+        
+        $_SESSION["LoggedIn"] = FALSE;
+            // Set the number of seconds to wait before redirecting
     
-    ?>
+    }
+    $ContentPage = 'content.php';
+    echo "<a href='{$ContentPage}'> Click here to view your students, record grades, and generate report cards</a>.";
+
+    include "footer.php"; ?>
 
