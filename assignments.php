@@ -10,7 +10,7 @@ $dbname = 'white_board_rules';
 $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
 // Retrieve student names from the database
-$result = $connection->query("SELECT student_id, first_name FROM students");
+$result = $connection->query("SELECT student_id, first_name, last_name FROM students");
 
 echo "<h2>Student Grades Form</h2>";
 
@@ -18,8 +18,9 @@ echo "<form action='submit.php' method='post'>";
 echo "<label for='studentName'>Student Name:</label>";
 echo "<select name='studentName' required>";
 while ($row = $result->fetch_assoc()) {
-    echo "<option value='{$row['student_id']}'>{$row['first_name']}</option>";
+    echo "<option value='{$row['student_id']}'>{$row['first_name']} {$row['last_name']}</option>";
 }
+
 echo "</select><br>";
 
 echo "<label for='grade'>Grade:</label>";
@@ -37,11 +38,10 @@ echo "</form>";
 // Display student names outside the form
 $result->data_seek(0); // Reset result pointer
 while ($row = $result->fetch_assoc()) {
-    echo "Student ID: {$row['student_id']} - Name: {$row['first_name']}<br>";
+    echo "Student ID: {$row['student_id']} - Name: {$row['first_name']} {$row['last_name']}<br>";
 }
 
 $connection->close();
 
 include "footer.php";
 ?>
-    
