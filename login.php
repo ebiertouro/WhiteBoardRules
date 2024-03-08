@@ -3,8 +3,6 @@
         $title = "Teacher Login";
         include "header.php"; 
     ?>
-
-
      <div class="login-container">
         <div class="form-container">
             <h1>Login</h1>
@@ -20,23 +18,14 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" required>
                     </div>
-
-                   
-
-                   
-
                     <div class="button-group">
-                        <button type="submit">Sign Up</button>
+                        <button type="submit">Login</button>
                     </div>
+                  
                 </div>
             </form>
+             <a href="signup.php"><button>Not Registered? Sign Up</button></a>
         </div>
     </div>
 
     <?php include "footer.php"; ?>
-
-
-
-
-
-
