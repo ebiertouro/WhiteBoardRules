@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sql = "INSERT INTO students (student_id, first_name, last_name, birthday) VALUES ('$id', '$firstName', '$lastName', '$birthday')";
 
         if ($connection->query($sql) === TRUE) {
-            echo "<p>Student added successfully!</p>";
+            echo "<p>$firstName $lastName added successfully!</p>";
         } else {
             echo "Error: " . $sql . "<br>" . $connection->error;
         }
