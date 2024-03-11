@@ -35,12 +35,6 @@ echo "<input type='checkbox' name='optionalField'><br>";
 echo "<input type='submit' value='Submit'>";
 echo "</form>";
 
-// Display student names outside the form
-$result->data_seek(0); // Reset result pointer
-while ($row = $result->fetch_assoc()) {
-    echo "Student ID: {$row['student_id']} - Name: {$row['first_name']} {$row['last_name']}<br>";
-}
-
 $connection->close();
 
 include "footer.php";
