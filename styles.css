@@ -194,38 +194,3 @@ h6 {
 .slick-next{
     margin-right: 5px;
 }
-
-/*
-.inLineFormGroup{
-    display:flex;
-    line-height: 30px;
-    padding-right: 5px;
-}
-
-.inLineInput{
-    flex: 1;
-}
-
-label{
-    margin-bottom: 0;
-    padding-right: 5px;
-}
-
-.accountInformation {
-    display:block !important;
-    text-align: left;
-}
-
-/*
-input[type="text"], input[type="password"], textarea{
-    width: 100%;
-    border-radius: 5px;
-    line-height: 30px;
-}
-
-
-
-.form-group {
-    margin-bottom: 15px;
-}
-*/
