@@ -36,7 +36,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css" type="text/css" />
-
+    <title><?php echo $title; ?></title>
 
 </head>
 
