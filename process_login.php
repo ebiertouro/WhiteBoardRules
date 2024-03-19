@@ -17,7 +17,7 @@
          
         // check connection
         if($mysqli->connect_errno ) {
-            printf("Connect failed: %s<br />", $mysqli→connect_error);
+            printf("Connect failed: %s<br />", $mysqli -> connect_error);
             exit();
         }
 
