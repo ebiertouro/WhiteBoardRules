@@ -2,7 +2,9 @@
     <ul class="navigation">
         <li class="navItem">        
             <div class="logo-container">
-                <img src="LogoImage.png" width="80" id="logo" />
+                <a href="index.php">
+                    <img src="LogoImage.png" width="80" id="logo" />
+                </a>
                 <img src="LogoSlogan.png" id="slogan" />
             </div>
         </li>
