@@ -29,7 +29,7 @@
     text-transform: uppercase;
 }
 
-.navA {
+.nav {
     color: #FFF;
     text-decoration: none;
     padding: 15px 10px; 
@@ -37,13 +37,13 @@
     border-radius: 25px;
 }
 
-.navA:hover {
+.nav:hover {
     text-decoration: none;
     color: #FFF;
     background-color: #082D0F;
 }
 
-.activeA {
+.active {
     color: #082D0F;
     font-weight: bold;
 }
