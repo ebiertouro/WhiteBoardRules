@@ -50,7 +50,7 @@
 
 /* Body */
 body {
-    background-color: #FCEBF9;
+    background-color: #f2f2f2;
     color: #302D30;
     font-family: Arial, sans-serif;
     display: flex;
@@ -60,7 +60,7 @@ body {
     text-align: center;
     padding-top: 100px;
     padding-bottom: 40px;
-    margin-top: 80px;
+    /*margin-top: 80px;*/
     margin-bottom: 40px;
 }
 
@@ -97,6 +97,21 @@ body {
     text-align: center;
 }
 
+.urlBare{
+    color: white;
+    text-decoration: none; /* no underline */
+}
+
+/* Flex left/right */
+.flexContent{
+    display: flex;
+}
+
+.leftContent {
+    padding-right: 40px;
+}
+
+/* Login settings */
 .login-container {
     display: flex;
     align-items: center;
@@ -108,14 +123,22 @@ body {
     text-align: center;
 }
 
+h1 {
+    text-align:center;
+}
+
 .login-form {
     width: auto;
 }
 
 .form-border {
-    border: solid #333 2px;
+    border: solid grey 2px;
     padding: 20px;
     box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px 6px grey;
+    background-color: white;
+    text-align:left;
 }
 
 .form-group {
@@ -137,27 +160,28 @@ h2 {
     justify-content: flex-end;
 }
 
-button {
+.btn {
     background-color: #5EFC8D;
-    color: #007BFF;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     border-radius: 20px;
-    border: solid #007BFF 2px;
+    border: solid black 2px;
     cursor: pointer;
+    width:100%;
 }
 
-button:hover {
-    color: white;
-    border-color: white; 
+.btn:hover {
+    color: grey;
+    border-color: grey; 
 }
 
 label {
-    display: block;
     margin-bottom: 5px;
+    text-align:left;
 }
 
 input[type="number"],
@@ -178,7 +202,6 @@ form {
 form input,
 form textarea,
 form select {
-    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: solid #ccc 1px;
@@ -197,6 +220,7 @@ form .button-group {
     margin-top: 20px;
 }
 
+/* Profile Pics in SIgn up */
 .profile-pic-div {
   display: flex;
   flex-wrap: wrap;
@@ -207,7 +231,40 @@ form .button-group {
   margin: 10px;
 }
 
+/* Slick Slider settings */
 .slickImg {
   width: 100px; /* Adjust according to your requirement */
   height: weight; /* Adjust according to your requirement */
 }
+
+/* Responsive Slides Settings */
+.rslides {
+    position: relative;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  
+  .rslides li {
+    position: absolute;
+    display: none;
+    width: 100%;
+    left: 0;
+    top: 0;
+    }
+  
+  .rslides li:first-child {
+    position: relative;
+    display: block;
+    float: left;
+    }
+  
+  .rslides img {
+    display: block;
+    height: auto;
+    float: left;
+    width: 500px;
+    border: 0;
+    }

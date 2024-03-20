@@ -7,10 +7,10 @@
 
 <div class="container login-container">
         <div class="container form-container">
-            <h1>Teacher Sign-Up</h2>
 
             <form id="registrationForm" method="post" action="process_teacher_login.php" class="login-form">
                 <div class="form-border">
+                    <h1>Teacher Sign-Up</h2>
                     <h2>Account Information</h2>
 
                     <div class="form-group">
