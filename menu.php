@@ -4,8 +4,8 @@
             <div class="logo-container">
                 <a href="index.php">
                     <img src="LogoImage.png" width="80" id="logo" />
+                    <img src="LogoSlogan.png" id="slogan" />
                 </a>
-                <img src="LogoSlogan.png" id="slogan" />
             </div>
         </li>
         <li class="navItem"><a class="nav <?php if ( $title == "Students" ) { echo "active"; } ?>" href="./students.php">Students</a></li>
