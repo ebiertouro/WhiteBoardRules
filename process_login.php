@@ -46,6 +46,11 @@
         mysqli_free_result($result);
         $mysqli->close();
 
+        // Output the meta refresh tag with the specified delay and redirect URL
+        $seconds = .5;
+        $process = 'content.php';
+        echo "<meta http-equiv='refresh' content='{$seconds};url={$process}'>";
+
         $ContentPage = 'content.php';
         echo "<a href='{$ContentPage}'> Click here to view your students, record grades, and generate report cards</a>.";
 
