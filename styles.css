@@ -235,6 +235,24 @@ form .button-group {
 .slickImg {
   width: 100px; /* Adjust according to your requirement */
   height: weight; /* Adjust according to your requirement */
+  border-radius: 50px;
+  border: 1px solid grey;
+}
+
+.slickImg:hover{
+    cursor:pointer;
+    border-color: grey;
+}
+
+.slick-next:before, .slick-prev:before {
+    color: grey;
+}
+
+.slick-prev{
+    margin-left: 5px;
+}
+.slick-next{
+    margin-right: 5px;
 }
 
 /* Responsive Slides Settings */

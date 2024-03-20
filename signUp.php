@@ -234,7 +234,7 @@
             });
 
             $(".slickImg").click(function(){
-                $(".slickImg").css("border-width","0px");
+                $(".slickImg").css("border","1px solid grey");
                 $(this).css("border","2px dashed gray");
                 $("#profilePic").val($(this).attr('src'));
             });
