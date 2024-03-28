@@ -286,3 +286,12 @@ form .button-group {
     width: 500px;
     border: 0;
     }
+    .login {
+    position: relative;
+    z-index: 9999; /* Set a high z-index value */
+}
+
+.rslides {
+    position: relative;
+    z-index: 1; /* Set a lower z-index value than the login form */
+}
