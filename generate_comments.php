@@ -17,17 +17,17 @@
             <option value="trig">Trigonometry</option>
             <option value="home_ec">Home Economics</option>
         </select>
-
-        <label for="grade">Select Grade:</label>
+        <br></br>
+        <label for="grade">Snark Lever:</label>
         <select name="grade">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="F">F</option>
+            <option value="A">Neutral</option>
+            <option value="B">Gushing</option>
+            <option value="C">Sweet</option>
+            <option value="D">Snarky</option>
+            <option value="F">Acidic</option>
         </select>
 
-        <button type="submit">Generate Comment</button>
+        <button type="submit" class="btn">Generate Comment</button>
     </form>
     <?php include "footer.php"; ?>
 

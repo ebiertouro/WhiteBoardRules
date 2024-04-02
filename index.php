@@ -1,20 +1,16 @@
 <?php 
     $title = "Home";
     include "header.php";
-?>
-<?php
-    // Start the session
-    session_start();
+
 
     // Check if the user is logged in
     if (!isset($_SESSION["LoggedIn"]) || $_SESSION["LoggedIn"] !== TRUE) {
-        include "homeLoggedOut.php";
+        include "home_logged_out.php";
     }
     else {
-        include "homeLoggedIn.php";
+        include "home_logged_in.php";
     }
 
-?>    
-<?php include "footer.php"; ?>
+ include "footer.php"; ?>
 
 

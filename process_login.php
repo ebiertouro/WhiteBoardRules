@@ -1,7 +1,7 @@
     <?php 
         $title = "Sign-Up Response";
         include "header.php"; 
-        session_start();
+        
     ?>
     <?php
         // get users input
@@ -27,19 +27,18 @@
             exit();
         }
 
-        printf('Connected successfully.<br />');
+       
          
         // Run Query
-        $sql = "SELECT `username`, `password` FROM `authorizedusers` WHERE `username` = '" . $postedUsername . "' AND `password`= '" . $postedPassword . "'";
+        $sql = "SELECT `username`, `password` FROM `authorizedusers` WHERE `username` = '" 
+                . $postedUsername . "' AND `password`= '" . $postedPassword . "'";
         $result = $mysqli->query($sql);
            
         if ($result->num_rows == 1) {
             setcookie('UserName', $postedUsername);
             $_SESSION["LoggedIn"] = TRUE;
-            printf('Logged in.<br />');
         } else {
             $_SESSION["LoggedIn"] = FALSE;
-            printf('Not logged in.<br />');
         }
 
         // Close DB
@@ -48,11 +47,7 @@
 
         // Output the meta refresh tag with the specified delay and redirect URL
         $seconds = .5;
-        $process = 'content.php';
+        $process = 'login_response.php';
         echo "<meta http-equiv='refresh' content='{$seconds};url={$process}'>";
 
-        $ContentPage = 'content.php';
-        echo "<a href='{$ContentPage}'> Click here to view your students, record grades, and generate report cards</a>.";
-
     include "footer.php"; ?>
-

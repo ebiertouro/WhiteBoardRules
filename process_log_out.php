@@ -1,7 +1,7 @@
 <?php 
         $title = "Sign-Up Response";
         include "header.php"; 
-        session_start();
+       
     ?>
 
 
@@ -10,7 +10,7 @@
     setcookie('UserName', "", time()-3600);
     $_SESSION["LoggedIn"] = FALSE;
 
-    $seconds = .5;
+    $seconds = 5;
     $homePage = 'index.php';
 
     // Output the meta refresh tag with the specified delay and redirect URL

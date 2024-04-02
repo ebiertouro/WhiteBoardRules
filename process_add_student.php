@@ -20,7 +20,7 @@ $id = $firstName = $lastName = $birthday = "";
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Validate and sanitize form data
-    $id = mysqli_real_escape_string($connection, $_POST["id"]);
+    $id = mysqli_real_escape_string($connection, $_POST["studentid"]);
     $firstName = mysqli_real_escape_string($connection, $_POST["firstName"]);
     $lastName = mysqli_real_escape_string($connection, $_POST["lastName"]);
     $birthday = mysqli_real_escape_string($connection, $_POST["birthday"]);

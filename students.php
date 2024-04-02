@@ -35,7 +35,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo "</select><br>";
-echo "<input type='submit' value='Submit'>";
+echo "<input type='submit' class='btn' value='Submit'>";
 echo "</form>";
 
 
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-echo"<a class='' href='addStudent.php'>Add Student</a>"
+echo"<a class='' href='add_student.php'>Add Student</a>"
 
 ?>
 
