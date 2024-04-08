@@ -41,8 +41,8 @@ echo "</select><br>";
         $student_id = $_POST['studentName']; // Updated to 'studentName'
         $sql = "SELECT c.class_subject, AVG(g.Grade) AS average_grade
                 FROM student_assignments g
-                INNER JOIN Assignments a ON g.assignment_id = a.id
-                INNER JOIN Classes c ON a.class_id = c.id
+                INNER JOIN Assignments a ON g.assignment_id = a.assignment_id
+                INNER JOIN Classes c ON a.class_id = c.class_id
                 WHERE g.student_id = $student_id
                 GROUP BY c.class_subject";
         $result = $connection->query($sql);
