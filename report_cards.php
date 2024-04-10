@@ -1,44 +1,30 @@
-<?php 
+<?php
     $title = "Report Cards";
     include "header.php"; 
+
     // Connect to the database
-$dbhost = '127.0.0.1';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'white_board_rules';
-$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+    $dbhost = '127.0.0.1';
+    $dbuser = 'root';
+    $dbpass = '';
+    $dbname = 'white_board_rules';
+    $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
-// Retrieve student names from the database
-$result = $connection->query("SELECT student_id, first_name, last_name FROM students");
+    // Retrieve student names from the database
+    $result = $connection->query("SELECT student_id, first_name, last_name FROM students");
 
+    echo "<form method='post' action='generate_comments.php'>";
+    echo "<label for='student_id'>Select Student:</label>";
+    echo "<select name='student_id' id='student_id' required>";
 
-echo "<form method='post' action='".$_SERVER['PHP_SELF']."'>";
-echo "<label for='studentName'>Select Student:</label>";
-echo "<select name='studentName' id='studentName' required>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='{$row['student_id']}'>{$row['first_name']} {$row['last_name']}</option>";
+    }
 
-while ($row = $result->fetch_assoc()) {
-    echo "<option value='{$row['student_id']}'>{$row['first_name']} {$row['last_name']}</option>";
-}
-
-echo "</select><br>";
-   
-    
-    $sql = "SELECT student_id, first_name, last_name FROM Students";
-    $result = $connection->query($sql);
-    
-
-    
-    echo "</select>";
-    echo "<input type='submit' name='submit' class='btn' value='Get Grades'>";
-    
-  
-    $comments = 'generate_comments.php';
-    echo "<a href={$comments}>Comment</a>";
-    echo "</form>";
+    echo "</select><br>";
 
     // PHP code to calculate and display average grades for each subject
     if(isset($_POST['submit'])) {
-        $student_id = $_POST['studentName']; // Updated to 'studentName'
+        $student_id = $_POST['student_id']; // Updated to 'student_id'
         $sql = "SELECT c.class_subject, AVG(g.Grade) AS average_grade
                 FROM student_assignments g
                 INNER JOIN Assignments a ON g.assignment_id = a.assignment_id
@@ -53,15 +39,24 @@ echo "</select><br>";
             
             while ($row = $result->fetch_assoc()) {
                 echo "<li>".$row['class_subject'].": ".$row['average_grade']."</li>";
+                echo "<input type='hidden' name='grades[]' value='{$row['average_grade']}'>";
             }
             
             echo "</ul>";
         } else {
             echo "No grades found for the selected student.";
         }
-        
-        $connection->close();
     }
+    
+    echo "<input type='submit' name='submit' class='btn' value='Get Grades'>";
+    echo "</form>";
+
+    // Button to generate comments
+    echo "<form action='generate_comments.php'>";
+    echo "<input type='submit' class='btn' value='Generate Comments'>";
+    echo "</form>";
+
+    $connection->close();
     
     include "footer.php"; 
 ?>
