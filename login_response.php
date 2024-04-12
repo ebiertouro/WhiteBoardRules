@@ -3,11 +3,9 @@
     include "header.php"; 
 
 
-    // Start the session
-    session_start();
-
+   
     // If not logged in, redirect to the login page
-    $seconds = .5;
+    $seconds = 5;
 
     // Set the URL of the login page
     $homePage = 'index.php';
@@ -21,7 +19,7 @@
 
         // Display a message to inform the user about the redirection
         echo "<a>Invalid Login! You will be redirected to the login page in {$seconds} seconds. 
-            Otherwise, <a href='{$homePage}'>click here</a>.";
+            Otherwise, <a href='{$homePage}'>click here.</a>";
 
         // Terminate the script to prevent further execution
         exit;
@@ -29,10 +27,8 @@
     }
     else{
         // Display a message to inform the user about the redirection
-        $name = $_COOKIE['UserName'];
-        echo "<a>Welcome $name! You will be redirected to the home page in {$seconds} seconds. 
-            Otherwise, <a href='{$homePage}'>click here</a>.";
-    
+        $loggedin = "home_logged_in.php";  
+        echo"<meta http-equiv='refresh' content=0;url='{$loggedin}'>";
     }
 
 

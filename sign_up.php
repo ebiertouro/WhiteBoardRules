@@ -1,14 +1,12 @@
-    <?php 
+pr    <?php 
         $title = "Teacher Sign-Up";
         include "header.php"; 
     ?>
 
-
-
 <div class="container login-container">
         <div class="container form-container">
 
-            <form id="registrationForm" method="post" action="process_teacher_login.php" class="login-form">
+            <form id="registrationForm" method="post" action="process_teacher_signup.php" class="login-form">
                 <div class="form-border">
                     <h1>Teacher Sign-Up</h2>
                     <h2>Account Information</h2>

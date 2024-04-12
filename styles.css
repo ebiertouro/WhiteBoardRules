@@ -50,7 +50,7 @@
 
 /* Body */
 body {
-    background-color: #f2f2f2;
+    background-color: #FCEBF9;
     color: #302D30;
     font-family: Arial, sans-serif;
     display: flex;
@@ -127,6 +127,8 @@ h1 {
     text-align:center;
 }
 
+
+
 .login-form {
     width: auto;
 }
@@ -171,7 +173,6 @@ h2 {
     border-radius: 20px;
     border: solid black 2px;
     cursor: pointer;
-    width:100%;
 }
 
 .btn:hover {
@@ -286,6 +287,7 @@ form .button-group {
     width: 500px;
     border: 0;
     }
+
     .login {
     position: relative;
     z-index: 9999; /* Set a high z-index value */

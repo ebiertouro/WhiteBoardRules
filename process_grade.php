@@ -1,6 +1,10 @@
 <?php
-// Assuming you have a database connection
-$conn = mysqli_connect("your_host", "your_user", "your_password", "your_database");
+// Connect to the database
+$dbhost = '127.0.0.1';
+$dbuser = 'root';
+$dbpass = '';
+$dbname = 'white_board_rules';
+$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
 // Retrieve form data
 $student_id = $_POST['student_id'];

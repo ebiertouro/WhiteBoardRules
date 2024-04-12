@@ -1,5 +1,7 @@
 
-
+<?php
+$title = "Log in";
+?>
 <div class="flexContent notLoggedIn">
 <div class="leftContent">
     <h1>Welcome!</h1>
@@ -33,7 +35,7 @@
                         <div class="button-group">
                             <button type="submit" class="btn">Login</button>
                         </div>
-                        <p style="text-align:center">Not Registered? <a href="signup.php">Sign Up</a></p>
+                        <p style="text-align:center">Not Registered? <a href="sign_up.php">Sign Up</a></p>
                     </div>
                 </form>
             </div>

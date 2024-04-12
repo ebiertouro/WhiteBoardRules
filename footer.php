@@ -1,6 +1,6 @@
 <hr />
 <div id="footer">
-    <p><a class="urlBare" href="contactUs.php">Contact Us</a></p>
+    <p><a class="urlBare" href="contact.php">Contact Us</a></p>
 </div>
 
 </body>

@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $birthday = $_POST["birthday"];
 
     // Insert data into the database
-    $sql = "INSERT INTO students (id, first_name, last_name, birthday) VALUES ('$id', '$firstName', '$lastName', '$birthday')";
+    $sql = "INSERT INTO students (student_id, first_name, last_name, birthday) VALUES ('$id', '$firstName', '$lastName', '$birthday')";
 
     if ($connection->query($sql) === TRUE) {
         echo "<p>Student added successfully!</p>";
@@ -51,7 +51,7 @@ $connection->close();
     <label for="birthday">Birthday:</label>
     <input type="date" name="birthday" required><br>
 
-    <input type="submit" value="Add Student">
+    <input type="submit" class="btn" value="Add Student">
 </form>
 
 <?php include "footer.php"; ?>

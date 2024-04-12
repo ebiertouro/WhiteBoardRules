@@ -1,3 +1,4 @@
+
 <?php 
 $title = "Sign-Up Response";
 include "header.php"; 
@@ -81,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         mysqli_free_result($au_id_result);
         mysqli_free_result($subject_id_result);
         mysqli_free_result($user_id_result);
+
 
       } else{
           echo"Error: Unable to fetch subject id";

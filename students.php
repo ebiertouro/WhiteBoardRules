@@ -1,8 +1,6 @@
 <?php 
-        $title = "Students";
-        include "header.php"; 
-    
-
+$title = "Students";
+include "header.php"; 
 
 // Connect to the database
 $dbhost = '127.0.0.1';
@@ -16,51 +14,64 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-// Retrieve class names from the database
-$result = $connection->query("SELECT class_id, class_subject FROM classes WHERE teacher_id = 1");
+// Initialize $teacher_id to a default value
+$teacher_id = 1;
 
+// Check if au_id is stored in session
+if(isset($_SESSION['au_id'])) {
+    $au_id = $_SESSION['au_id'];
+    // Run a query to search for teacher_id using au_id
+    $query = "SELECT teacher_id FROM teachers WHERE au_id = $au_id";
+    $result = $connection->query($query);
 
+    // Check if the query was successful
+    if($result && $result->num_rows == 1) {
+        // Fetch the teacher_id
+        $row = $result->fetch_assoc();
+        $teacher_id = $row['teacher_id'];
+    }
+}   
+
+// Retrieve class names from the database for the teacher
+$result = $connection->query("SELECT class_id FROM classes WHERE teacher_id = $teacher_id");
 
 echo "<form action='students.php' method='post'>";
-echo "<label for='classID'>Class:</label>";
-echo "<select name='classID' id='classID' required>";
-echo "<option value='notSelected'>Select A Class</option>";
+echo "<label for='class_id'>Class:</label>";
+echo "<select name='class_id' id='class_id' required>";
 
 while ($row = $result->fetch_assoc()) {
-    echo "<option value='{$row['class_id']}' ";
-    if($row['class_id'] == 1){
-        echo "selected";
-    }
-    echo ">{$row['class_subject']}</option>";
+    echo "<option value='{$row['class_id']}'>{$row['class_id']}</option>";
 }
 
 echo "</select><br>";
-echo "<input type='submit' value='Submit'>";
+echo "<input type='submit' class='btn' value='Submit'>";
 echo "</form>";
-
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Validate and sanitize form data
-    $id = mysqli_real_escape_string($connection, $_POST["classID"]);
-    
-    $result = $connection->query("SELECT students.student_id, first_name, last_name, student_classes.class_id FROM students INNER JOIN student_classes ON STUDENTS.student_id = student_classes.student_id WHERE class_id = 1");
-    if (mysqli_num_rows($result) > 0) { 
-        echo "<table> <tr> <th>First Name</th><th>Last Name</th><th>Average (coming)</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>".$row['first_name']."</td><td>".$row['last_name']."</td><td>100</td></tr>";
-        }
-        echo "</table>";
-    } else { 
-        echo "<p> No students added yet for this course.</p>";
-        
+    $class_id = mysqli_real_escape_string($connection, $_POST["class_id"]);
 
+    // Query to retrieve students for the selected class
+    $query = "SELECT students.student_id, students.first_name, students.last_name
+              FROM students 
+              INNER JOIN student_classes ON students.student_id = student_classes.student_id 
+              WHERE student_classes.class_id = $class_id";
+    
+    $result = $connection->query($query);
+    
+    if ($result && $result->num_rows > 0) { 
+       
+        while ($row = $result->fetch_assoc()) {
+            echo "<br>".$row['first_name'].' '.$row['last_name']."<br>";
+        }
+        echo "<br>";
+    } else { 
+        echo "<p>No students found for this class.</p>";
     }
 }
 
-echo"<a class='' href='addStudent.php'>Add Student</a>"
+echo "<a class='btn' href='add_student.php'>Create New Student</a>";
 
+include "footer.php";
 ?>
-
-
-<?php include "footer.php"; ?>
