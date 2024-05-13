@@ -1,31 +1,49 @@
 <?php 
-    $title = "Comment Generator";
-    include "header.php"; 
+$title = "Comment Generator";
+include "header.php"; 
 
-    // Check if student_id and grade are set
-    $student_id = isset($_POST['student_id']) ? $_POST['student_id'] : '';
-    $grade = isset($_POST['grade']) ? $_POST['grade'] : '';
+// Check if student_id is set
+$student_id = isset($_POST['student_id']) ? $_POST['student_id'] : '';
+
+$au_id = isset($_SESSION['au_id']) ? $_SESSION['au_id'] : '';
+
+// Connect to the database
+$dbhost = '127.0.0.1';
+$dbuser = 'root';
+$dbpass = '';
+$dbname = 'white_board_rules'; // Update with your database name
+$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+
+// Check the connection
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+// Fetch subject name based on au_id
+$sql = "SELECT s.subject_name
+        FROM subjects s
+        JOIN teachers t ON s.subject_id = t.subject_id
+        JOIN authorizedusers au ON t.username = au.username
+        WHERE au.au_id = '$au_id'";
+$result = $connection->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $subject_name = $row['subject_name'];
+} else {
+    $subject_name = "Unknown Subject"; // Default value if subject not found
+}
+
+// Close the database connection
+$connection->close();
 ?>
-
-<h1>Generate Report Card Comments</h1>
 
 <form method="post" action="process_comments.php">
     <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($student_id); ?>">
-  <!-- <input type="hidden" name="grade" value="<?php echo htmlspecialchars($grade); ?>">  -->
     <input type="hidden" name="grade" value="95"> 
 
-    <label for="subject">Select Subject:</label>
-    <select name="subject">
-        <option value="Math">Math</option>
-        <option value="English">English</option>
-        <option value="Chemistry">Chemistry</option> 
-        <option value="Global History">Global History</option>
-        <option value="American History">American History</option>
-        <option value="Biology">Biology</option>
-        <option value="Geometry">Geometry</option>
-        <option value="Trigonometry">Trigonometry</option>
-        <option value="Home Economics">Home Economics</option>
-    </select>
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" value="<?php echo htmlspecialchars($subject_name); ?>" readonly>
     <br><br>
 
     <label for="snark">Snark Lever:</label>

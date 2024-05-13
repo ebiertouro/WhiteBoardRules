@@ -9,33 +9,46 @@ $dbpass = '';
 $dbname = 'white_board_rules';
 $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
-// Retrieve student names from the database
-$result = $connection->query("SELECT student_id, first_name, last_name FROM students");
-
-echo "<h2>Student Grades Form</h2>";
-
-echo "<form action='process_grade.php' method='post'>";
-echo "<label for='studentName'>Student Name:</label>";
-echo "<select name='studentName' required>";
-while ($row = $result->fetch_assoc()) {
-    echo "<option value='{$row['student_id']}'>{$row['first_name']} {$row['last_name']}</option>";
+// Check for connection errors
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
 }
 
-echo "</select><br>";
+// Retrieve student names from the database
+$studentResult = $connection->query("SELECT student_id, first_name, last_name FROM students");
 
-echo "<label for='grade'>Grade:</label>";
-echo "<input type='number' name='grade' required><br>";
+// Retrieve assignment names from the database
+$assignmentResult = $connection->query("SELECT assignment_id, assignment_name FROM assignments");
 
-echo "<label for='comment'>Additional Comments:</label>";
-echo "<textarea name='comment' rows='4' cols='50'></textarea><br>";
+echo "<form action='process_grade.php' method='post'>";
+echo "    <label for='student_id'>Student Name:</label>";
+echo "    <select name='student_id' required>";
+while ($studentRow = $studentResult->fetch_assoc()) {
+    echo "        <option value='" . $studentRow['student_id'] . "'>";
+    echo $studentRow['first_name'] . ' ' . $studentRow['last_name'];
+    echo "</option>";
+}
+echo "    </select><br>";
 
-echo "<label for='optionalField'>Modified:</label>";
-echo "<input type='checkbox' name='optionalField'><br>";
+echo "    <label for='assignment_id'>Assignment:</label>";
+echo "    <select name='assignment_id' required>";
+$assignmentResult->data_seek(0); // reset the pointer
+while ($assignmentRow = $assignmentResult->fetch_assoc()) {
+    echo "        <option value='" . $assignmentRow['assignment_id'] . "'>";
+    echo $assignmentRow['assignment_name'];
+    echo "</option>";
+}
+echo "    </select><br>";
 
-echo "<input type='submit' class='btn' value='Submit'>";
+echo "    <label for='grade'>Grade:</label>";
+echo "    <input type='number' name='grade' required><br>";
+
+echo "    <label for='optionalField'>Modified:</label>";
+echo "    <input type='checkbox' name='optionalField'><br>";
+
+echo "    <input type='submit' class='btn' value='Submit'>";
 echo "</form>";
 
 $connection->close();
-
 include "footer.php";
 ?>

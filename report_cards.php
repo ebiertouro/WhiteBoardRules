@@ -17,15 +17,15 @@
     echo "<select name='student_id' id='student_id' required>";
 
     while ($row = $result->fetch_assoc()) {
+    // Button to generate comments
         echo "<option value='{$row['student_id']}'>{$row['first_name']} {$row['last_name']}</option>";
     }
     
     echo "</select><br>";
 
-    echo "<input type='submit' name='submit' class='btn' value='Get Grades'>";
+    echo "<input type='submit' name='submit' class='btn' value='Calculate Average'>";
     echo "</form>";
 
-    // Button to generate comments
     echo "<form method='post' action='generate_comments.php'>";
     echo "<input type='submit' class='btn' value='Generate Comments'>";
     echo "</form>";
