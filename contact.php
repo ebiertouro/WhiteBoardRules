@@ -1,10 +1,39 @@
 <?php 
-        $title = "ContactUs";
-        include "header.php"; 
-    ?>
+$title = "ContactUs";
+include "header.php"; 
 
+// Initialize $user_email variable
+$user_email = '';
+// Check if au_id is stored in session
+if(isset($_SESSION['au_id'])) {
+    $au_id = $_SESSION['au_id'];
 
-<?php
+ 
+    
+    // Connect to the database
+$dbhost = '127.0.0.1';
+$dbuser = 'root';
+$dbpass = '';
+$dbname = 'white_board_rules';
+$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+
+    // Run a query to search for email using au_id
+    $query = "SELECT email FROM teachers WHERE au_id = $au_id";
+    $result = $connection->query($query);
+
+    // Check if the query was successful
+    if($result && $result->num_rows == 1) {
+        // Fetch the email
+        $row = $result->fetch_assoc();
+        $user_email = $row['email'];
+    }
+    
+    $connection->close();
+} else {
+    // If au_id is not stored in session, default $user_email to an empty string
+    $user_email = '';
+}
+
 require 'PHPMailer-master/PHPMailerAutoload.php';
 $errors = [];
 $errorMessage = '';
@@ -24,7 +53,6 @@ if (!empty($_POST)) {
        $errors[] = 'Email is invalid';
 
    }
-
 
    if (empty($message)) {
        $errors[] = 'Message is empty';
@@ -52,21 +80,17 @@ if (!empty($_POST)) {
        $bodyParagraphs = ["Name: {$name}", "Email: {$email}", "Message:", nl2br($message)];
        $body = join('<br />', $bodyParagraphs);
        $mail->Body = $body;
-       echo $body;
 
        if($mail->send()){
-           header('Location: thank_you.php'); // Redirect to 'thank you' page. Make sure you have it
+           header('Location: thank_you.php'); 
        } else {
            $errorMessage = 'Oops, something went wrong. Mailer Error: ' . $mail->ErrorInfo;
        }
-
    }
-
 }
-
 ?>
 
- <form action="" method="post" id="contact-form">
+<form action="" method="post" id="contact-form">
    <h2>Contact us</h2>
    <p>
      <label>First Name:</label>
@@ -74,17 +98,15 @@ if (!empty($_POST)) {
    </p>
    <p>
      <label>Email Address:</label>
-     <input style="cursor: pointer;" name="email" type="text"/>
+     <input style="cursor: pointer;" name="email" type="text" value="<?php echo $user_email; ?>"/>
    </p>
    <p>
      <label>Message:</label>
      <textarea name="message"></textarea>
    </p>
    <p>
-     <input type="submit" value="Send"/>
+     <input type="submit" class="btn" value="Send"/>
    </p>
  </form>
-
-
 
 <?php include "footer.php"; ?>
