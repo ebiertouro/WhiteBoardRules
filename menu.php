@@ -1,12 +1,12 @@
 <div id="header">
-    <ul class="navigation">
+    <div class="logo-container">
+        <a href="index.php">
+            <img src="LogoImage.png" width="80" id="logo" />
+            <img src="LogoSlogan.png" id="slogan" />
+        </a>
+    </div>
+    <ul id="navigation" class="slimmenu">
         <li class="navItem"></li>
-         <div class="logo-container">
-                <a href="index.php">
-                    <img src="LogoImage.png" width="80" id="logo" />
-                    <img src="LogoSlogan.png" id="slogan" />
-                </a>
-           
         <?php 
             // Check if session is not started, then start it
             if (session_status() == PHP_SESSION_NONE) {
@@ -20,7 +20,6 @@
                     echo 'active';
                 }
                 echo '" href="./students.php">Students</a></li>';
-                
                 echo '<li class="navItem"><a class="nav ';
                 if ($title == "Assignments") {
                     echo 'active';
@@ -33,7 +32,7 @@
                 }
                 echo '" href="./report_cards.php">Report Cards</a></li>';
                 
-                 echo '<li class="navItem"><a class="nav ';
+                echo '<li class="navItem"><a class="nav ';
                 if ($title == "Log Out") {
                     echo 'active';
                 }

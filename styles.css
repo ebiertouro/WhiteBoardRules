@@ -127,8 +127,6 @@ h1 {
     text-align:center;
 }
 
-
-
 .login-form {
     width: auto;
 }
@@ -221,41 +219,44 @@ form .button-group {
     margin-top: 20px;
 }
 
-/* Profile Pics in SIgn up */
+/* Profile Pics in Sign up */
 .profile-pic-div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .profile-pic-div div {
-  margin: 10px;
+    margin: 10px;
 }
 
 /* Slick Slider settings */
 .slickImg {
-  width: 100px; /* Adjust according to your requirement */
-  height: weight; /* Adjust according to your requirement */
-  border-radius: 50px;
-  border: 1px solid grey;
+    width: 100px; /* Adjust according to your requirement */
+    height: 100px; /* Adjust according to your requirement */
+    border-radius: 50px;
+    border: 1px solid grey;
 }
 
-.slickImg:hover{
-    cursor:pointer;
+.slickImg:hover {
+    cursor: pointer;
     border-color: grey;
 }
 
-.slick-next:before, .slick-prev:before {
+.slick-next:before,
+.slick-prev:before {
     color: grey;
 }
 
-.slick-prev{
+.slick-prev {
     margin-left: 5px;
 }
-.slick-next{
+
+.slick-next {
     margin-right: 5px;
 }
 
+/* Responsive Slides Settings */
 /* Responsive Slides Settings */
 .rslides {
     position: relative;
@@ -264,36 +265,30 @@ form .button-group {
     width: 100%;
     padding: 0;
     margin: 0;
-    }
-  
-  .rslides li {
+}
+
+.rslides li {
     position: absolute;
     display: none;
     width: 100%;
     left: 0;
     top: 0;
-    }
-  
-  .rslides li:first-child {
+}
+
+.rslides li:first-child {
     position: relative;
     display: block;
     float: left;
-    }
-  
-  .rslides img {
+}
+
+.rslides img {
     display: block;
     height: auto;
     float: left;
     width: 500px;
     border: 0;
-    }
-
-    .login {
-    position: relative;
-    z-index: 9999; /* Set a high z-index value */
 }
 
 .rslides {
-    position: relative;
     z-index: 1; /* Set a lower z-index value than the login form */
 }
