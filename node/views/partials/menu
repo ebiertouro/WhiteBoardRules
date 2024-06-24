@@ -1,9 +1,0 @@
-ul#navigation.slimmenu
-  li.navItem
-    a.nav(href="/") Home
-  li.navItem
-    a.nav(href="/add_student") Add Student
-  li.navItem
-    a.nav(href="/view_students") View Students
-  li.navItem
-    a.nav(href="/contact_us") Contact Us
