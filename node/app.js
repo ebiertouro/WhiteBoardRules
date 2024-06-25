@@ -139,7 +139,6 @@ function addStudent(req, res) {
 }
 
 // Route for handling form submission and sending email with selected student records
-// Handle form submission to send email with selected student records
 app.post('/email_records', (req, res) => {
     const { email, selectedStudents } = req.body;
 
