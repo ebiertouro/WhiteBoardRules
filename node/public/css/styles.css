@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     z-index: 999;
-    margin: 0 !important;
+    margin: 0 /*!important */;
 }
 
 #slogan {
@@ -257,7 +257,6 @@ form .button-group {
 }
 
 /* Responsive Slides Settings */
-/* Responsive Slides Settings */
 .rslides {
     position: relative;
     list-style: none;
@@ -291,4 +290,42 @@ form .button-group {
 
 .rslides {
     z-index: 1; /* Set a lower z-index value than the login form */
+}
+
+/* Enhanced Table Styling */
+table.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+}
+
+table.student-table th, table.student-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table.student-table th {
+    background-color: #5EFC8D;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table.student-table tr:nth-child(even) {
+    background-color: #5efc8d50;
+}
+
+table.student-table tr:hover {
+    background-color: #ddd;
+}
+
+table.student-table th, table.student-table td {
+    text-align: center;
+    padding: 12px 15px;
+}
+
+a.btn {
+    margin-top: 20px;
+    display: inline-block;
 }
