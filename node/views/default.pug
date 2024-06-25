@@ -4,21 +4,22 @@ html
     title #{title}
     link(rel='stylesheet', href='/css/styles.css')
     meta(name="viewport" content="width=device-width, initial-scale=1")
+    block scripts
   body
     block header
-        div#header
-            div.logo-container
-                a(href="index.php")
-                    img(src="pictures/LogoImage.png" width="80").logo
-                    img(src="pictures/LogoSlogan.png")#slogan
-                a
-            ul#navigation.slimmenu
-                li.navItem
-                    a.nav(href="/") Home
-                li.navItem
-                    a.nav(href="/add_student") Add Student
-                li.navItem
-                    a.nav(href="/view_students") View Students
-                li.navItem
-                    a.nav(href="/contact_us") Contact Us
+      div#header
+        div.logo-container
+          a(href="index.php")
+            img(src="pictures/LogoImage.png" width="80").logo
+            img(src="pictures/LogoSlogan.png")#slogan
+          a
+        ul#navigation.slimmenu
+          li.navItem
+            a.nav(href="/") Home
+          li.navItem
+            a.nav(href="/add_student") Add Student
+          li.navItem
+            a.nav(href="/view_students") View Students
+          li.navItem
+            a.nav(href="/email_records") Recieve Student Records
     block content

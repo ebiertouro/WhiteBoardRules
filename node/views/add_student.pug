@@ -1,0 +1,23 @@
+extends default
+
+block content
+    h2 Add Student
+    form(action="/add_student" method="post")
+      label(for="id") ID:
+      input(type="text" name="id" required)
+      br
+      label(for="firstName") First Name:
+      input(type="text" name="firstName" required)
+      br
+      label(for="lastName") Last Name:
+      input(type="text" name="lastName" required)
+      br
+      label(for="birthday") Birthday:
+      input(type="date" name="birthday" required)
+      br
+      label(for="classID") Class ID:
+      select(name="classID" required)
+        each cls in classes
+          option(value=cls.class_id) #{cls.class_id}
+      br
+      input(type="submit" class="btn" value="Add Student")

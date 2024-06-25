@@ -1,0 +1,22 @@
+extends default
+
+block content
+  h2 Student List
+  table.student-table
+    thead
+      tr
+        th ID
+        th First Name
+        th Last Name
+        th Birthday
+    tbody
+      each student in students
+        tr
+          td= student.student_id
+          td= student.first_name
+          td= student.last_name
+          td(data-date=student.birthday)= student.birthday
+  a.btn.btn-primary(href="/add_student") Add Student
+
+block scripts
+  script(src="/js/script.js")
