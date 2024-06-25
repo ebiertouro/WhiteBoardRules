@@ -1,4 +1,3 @@
-
 <?php 
 $title = "Sign-Up Response";
 include "header.php"; 
@@ -24,75 +23,61 @@ include "header.php";
         die("Connection failed: " . $connection->connect_error);
     }
 
-
-// Retrieve form data
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve form data
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $school_name = $_POST["SchoolName"];
-    $usertype = "teacher";
-    $subject_name = $_POST['subject'];
-    $grade_level = $_POST['age'];
-    $email = $_POST['email'];
-    
-    
-    // Query to retrieve subject_id based on subject_name
-    $query_subject_id = "SELECT subject_id FROM subjects WHERE subject_name = '$subject_name'";
-
-    // Execute the query to retrieve subject_id
-    $subject_id_result = mysqli_query($connection, $query_subject_id);
-    
-    if ($subject_id_result) {
-        // Fetch the subject_id from the result
-        $subject_id_row = mysqli_fetch_assoc($subject_id_result);
-        $subject_id = $subject_id_row['subject_id'];
-
-        // Insert data into the authorizedusers table
-        $insert_authorized_users_sql = "INSERT INTO authorizedusers (username, password, user_type) VALUES "
-                . "('$username', '$password', '$usertype')";
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Retrieve form data
+        $username = mysqli_real_escape_string($connection, $_POST["username"]);
+        $password = mysqli_real_escape_string($connection, $_POST["password"]);
+        $school_name = mysqli_real_escape_string($connection, $_POST["SchoolName"]);
+        $usertype = "teacher";
+        $subject_name = mysqli_real_escape_string($connection, $_POST['subject']);
+        $grade_level = mysqli_real_escape_string($connection, $_POST['age']);
+        $email = mysqli_real_escape_string($connection, $_POST['email']);
         
-        if ($connection->query($insert_authorized_users_sql) === TRUE) {
-            // Query to retrieve au_id based on username
-            $query_au_id = "SELECT au_id FROM authorizedusers WHERE username = '$username'";
-            $au_id_result = mysqli_query($connection, $query_au_id);
+        // Query to retrieve subject_id based on subject_name
+        $query_subject_id = "SELECT subject_id FROM subjects WHERE subject_name = '$subject_name'";
 
-            if ($au_id_result) {
-                // Fetch the au_id from the result
-                $au_id_row = mysqli_fetch_assoc($au_id_result);
-                $au_id = $au_id_row['au_id'];
+        // Execute the query to retrieve subject_id
+        $subject_id_result = mysqli_query($connection, $query_subject_id);
+
+        if ($subject_id_result && mysqli_num_rows($subject_id_result) > 0) {
+            // Fetch the subject_id from the result
+            $subject_id_row = mysqli_fetch_assoc($subject_id_result);
+            $subject_id = $subject_id_row['subject_id'];
+
+            // Insert data into the authorizedusers table
+            $insert_authorized_users_sql = "INSERT INTO authorizedusers (username, password, user_type) VALUES "
+                    . "('$username', '$password', '$usertype')";
+            
+            if ($connection->query($insert_authorized_users_sql) === TRUE) {
+                // Get the auto-generated au_id
+                $au_id = $connection->insert_id;
 
                 // Insert data into the teachers table
-                $insert_teachers_sql=  "INSERT INTO teachers (au_id, email, username, school_name, subject_id, grade_level) VALUES "
+                $insert_teachers_sql = "INSERT INTO teachers (au_id, email, username, school_name, subject_id, grade_level) VALUES "
                         . "('$au_id', '$email', '$username', '$school_name', '$subject_id', '$grade_level')";
 
                 if ($connection->query($insert_teachers_sql) === TRUE) {
                     echo "<p>Teacher added successfully!</p>";
                 } else {
-                    echo "Error: " . $connection->error;
+                    echo "Error inserting into teachers table: " . $connection->error;
                 }
             } else {
-                echo "Error: Unable to fetch au id";
+                echo "Error inserting into authorizedusers table: " . $connection->error;
             }
+            
+            // Free result set
+            mysqli_free_result($subject_id_result);
         } else {
-            echo "Error: Unable to insert authorized user";
+            echo "Error: Subject not found or query failed.";
         }
-        
-        // Close au id query result and subject id query result 
-        mysqli_free_result($au_id_result);
-        mysqli_free_result($subject_id_result);
-        mysqli_free_result($user_id_result);
+    }
 
+    // Close the database connection
+    $connection->close();
 
-      } else{
-          echo"Error: Unable to fetch subject id";
-      }
-}
+    $loggedin =  'home_logged_in.php';  
+    echo "<meta http-equiv='refresh' content=0;url='{$loggedin}'>";
 
-// Close the database connection
-$connection->close();
-
-$loggedin =  'home_logged_in.php';  
-echo"<meta http-equiv='refresh' content=0;url='{$loggedin}'>";
-
-include"footer.php"; ?>
+    include "footer.php";
+?>

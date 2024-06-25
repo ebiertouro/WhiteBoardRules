@@ -17,7 +17,7 @@
     echo "<meta http-equiv='refresh' content='{$seconds};url={$homePage}'>";
 
     // Display a message to inform the user about the redirection
-    echo "<a>Logging out... You will be redirected to the login page in {$seconds} seconds. 
-    Otherwise, <a href='{$homePage}'>click here</a>.";
+    echo "<p>Logging out... You will be redirected to the login page in {$seconds} seconds. 
+    Otherwise, <a href='{$homePage}'>click here.</p>";
 
 include "footer.php"; ?>

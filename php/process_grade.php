@@ -12,11 +12,11 @@ $assignment_id = $_POST['assignment_id'];
 $grade = $_POST['grade'];
 
 // Validate and save to the database
-$sql = "INSERT INTO Grades (student_id, assignment_id, grade) VALUES ('$student_id', '$assignment_id', '$grade')";
-mysqli_query($conn, $sql);
+$sql = "INSERT INTO student_assignments (student_id, assignment_id, Grade) VALUES ('$student_id', '$assignment_id', '$grade')";
+mysqli_query($connection, $sql);
 
-mysqli_close($conn);
+mysqli_close($connection);
 
 // Redirect to confirmation page
-header("Location: confirmation.php");
+header("Location: grade_saved.php");
 ?>

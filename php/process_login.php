@@ -28,18 +28,27 @@
         }
 
        
-         
-        // Run Query
-        $sql = "SELECT `username`, `password` FROM `authorizedusers` WHERE `username` = '" 
-                . $postedUsername . "' AND `password`= '" . $postedPassword . "'";
-        $result = $mysqli->query($sql);
-           
-        if ($result->num_rows == 1) {
-            setcookie('UserName', $postedUsername);
-            $_SESSION["LoggedIn"] = TRUE;
-        } else {
-            $_SESSION["LoggedIn"] = FALSE;
-        }
+// Run Query
+$sql = "SELECT `au_id`, `username`, `password` FROM `authorizedusers` WHERE `username` = '" 
+        . $postedUsername . "' AND `password`= '" . $postedPassword . "'";
+$result = $mysqli->query($sql);
+
+if ($result->num_rows == 1) {
+    // Fetch the row to get au_id
+    $row = $result->fetch_assoc();
+    
+    // Set au_id to session
+    $_SESSION["au_id"] = $row['au_id'];
+
+    // Set cookie for username
+    setcookie('UserName', $postedUsername);
+
+    // Set LoggedIn session variable
+    $_SESSION["LoggedIn"] = TRUE;
+} else {
+    $_SESSION["LoggedIn"] = FALSE;
+}
+
 
         // Close DB
         mysqli_free_result($result);

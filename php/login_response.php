@@ -18,8 +18,8 @@
         
 
         // Display a message to inform the user about the redirection
-        echo "<a>Invalid Login! You will be redirected to the login page in {$seconds} seconds. 
-            Otherwise, <a href='{$homePage}'>click here.</a>";
+        echo "<p>Invalid Login! You will be redirected to the login page in {$seconds} seconds. 
+            Otherwise, <a href='{$homePage}'>click here</p>";
 
         // Terminate the script to prevent further execution
         exit;

@@ -29,7 +29,7 @@ $title = "Log in";
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password"/>
+                            <input type="password" class="form-control" name="password" id="password" />
 
                         </div>
                         <div class="button-group">

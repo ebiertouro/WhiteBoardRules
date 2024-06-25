@@ -92,6 +92,7 @@ if (!empty($_POST)) {
 
 <form action="" method="post" id="contact-form">
    <h2>Contact us</h2>
+   <div class="form-border">
    <p>
      <label>First Name:</label>
      <input name="name" type="text"/>
@@ -107,6 +108,7 @@ if (!empty($_POST)) {
    <p>
      <input type="submit" class="btn" value="Send"/>
    </p>
+   </div>
  </form>
 
 <?php include "footer.php"; ?>

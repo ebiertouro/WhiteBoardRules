@@ -39,12 +39,8 @@ $connection->close();
 ?>
 
 <form method="post" action="process_comments.php">
-    <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($student_id); ?>">
     <input type="hidden" name="grade" value="95"> 
 
-    <label for="subject">Subject:</label>
-    <input type="text" name="subject" value="<?php echo htmlspecialchars($subject_name); ?>" readonly>
-    <br><br>
 
     <label for="snark">Snark Lever:</label>
     <select name="snark">

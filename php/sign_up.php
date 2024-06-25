@@ -1,4 +1,4 @@
-pr    <?php 
+   <?php 
         $title = "Teacher Sign-Up";
         include "header.php"; 
     ?>
@@ -50,61 +50,39 @@ pr    <?php
                             <option value="Geometry">Geometry</option>
                             <option value="Trigonometry">Trigonometry</option>
                             <option value="Home Economics">Home Economics</option>
-                            <option value="Other">Other</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <h6 style="margin-top:10px;">Age Group</h6>
+                        <h6 style="margin-top:10px;">Grade Level</h6>
                         <div>
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="Elementary School" id="eSchool"/> 
-                                    <label for="eSchool">Elementary School</label>
+                                    <label for="Elementary School">Elementary School</label>
                             </div>
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="Middle School" id="mSchool"/> 
-                                    <label for="mSchool">Middle School</label>
+                                    <label for="Middle School">Middle School</label>
                             </div>
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="High School" id="hSchool"/> 
-                                    <label for="hSchool">High School</label>
+                                    <label for="High School">High School</label>
                             </div>
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="Undergraduate" id="uGraduate"/>
-                                    <label for="uGraduate">Undergraduate</label>
+                                    <label for="Under Graduate">Undergraduate</label>
                             </div>
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="Graduate" id="graduate"/> 
-                                    <label for="graduate">Graduate</label>
+                                    <label for="Graduate">Graduate</label>
                             </div>
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="other" id="ageOther" /> 
-                                    <label for="ageOther">Other</label>
+                                    <label for="Other">Other</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group checkbox-div">
-                        <h6 style="margin-top:10px;">Certifications</h6>
-                        <div class="checkbox-group" id="certGroup">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="Certification" value="Multiple Subject" id="MultipleSubject">
-                                <label class="form-check-label" for="MultipleSubject">Multiple Subject Teaching Credential</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="Certification" value="Single Subject" id="SingleSubject">
-                                <label class="form-check-label" for="SingleSubject">Single Subject Credential</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="Certification" value="National Board" id="NationalBoard">
-                                <label class="form-check-label" for="NationalBoard">National Board Certification</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="Certification" value="Other Certification" id="certOther">
-                                <label class="form-check-label" for="certOther">Other</label>
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group profile-pic-container">
                         <h2>Select Profile Icon</h2>
                         <div class="profile-pic-div">
@@ -126,7 +104,6 @@ pr    <?php
                     </div>
                     <div class="form-group button-group">
                         <div>
-                            <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                             <button type="submit" class="btn btn-secondary">Sign up</button>
                         </div>
                     </div>

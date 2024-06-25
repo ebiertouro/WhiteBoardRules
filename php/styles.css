@@ -1,0 +1,331 @@
+/* Navigation */
+.navigation {
+    box-sizing: border-box;
+    overflow: auto;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    margin: 0 /*!important */;
+}
+
+#slogan {
+    max-height: 80px; /* Ensure the slogan matches the height of the logo */
+    margin-left: 10px; /* Add some spacing between the logo and slogan */
+    margin-right: 10px;
+    width: auto;
+}
+
+#logo {
+    align-self: flex-start; /* Align the logo to the top of the container */
+    margin-top: 5px; 
+}
+
+.navItem {
+    color: #FFF !important;
+    display: inline-block;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav {
+    color: #FFF;
+    text-decoration: none;
+    padding: 15px 10px; 
+    font-weight: bold;
+    border-radius: 25px;
+}
+
+.nav:hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #082D0F;
+}
+
+.active {
+    color: #082D0F;
+    font-weight: bold;
+}
+
+/* Body */
+body {
+    background-color: #FCEBF9;
+    color: #302D30;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    /*margin-top: 80px;*/
+    margin-bottom: 40px;
+}
+
+#header {
+    background-color: #5EFC8D;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+#bar a {
+    color: cyan;
+    text-decoration: none;
+}
+
+#bar a:hover {
+    text-decoration: underline;
+}
+
+#bar p {
+    margin: 0;
+}
+
+#footer {
+    background-color: #5EFC8D;
+    padding: 5px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+.urlBare{
+    color: white;
+    text-decoration: none; /* no underline */
+}
+
+/* Flex left/right */
+.flexContent{
+    display: flex;
+}
+
+.leftContent {
+    padding-right: 40px;
+}
+
+/* Login settings */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.form-container {
+    text-align: center;
+}
+
+h1 {
+    text-align:center;
+}
+
+.login-form {
+    width: auto;
+}
+
+.form-border {
+    border: solid grey 2px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px 6px grey;
+    background-color: white;
+    text-align:left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    background-color: #5EFC8D;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
+    border: solid black 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: grey;
+    border-color: grey; 
+}
+
+label {
+    margin-bottom: 5px;
+    text-align:left;
+}
+
+input[type="number"],
+textarea,
+select {
+    width: auto;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: solid #ccc 1px;
+    border-radius: 4px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form input,
+form textarea,
+form select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: solid #ccc 1px;
+    border-radius: 4px;
+}
+
+form button {
+    width: auto;
+}
+
+form .button-group {
+    justify-content: flex-end;
+}
+
+.student-list {
+    margin-top: 20px;
+}
+
+/* Profile Pics in Sign up */
+.profile-pic-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-pic-div div {
+    margin: 10px;
+}
+
+/* Slick Slider settings */
+.slickImg {
+    width: 100px; /* Adjust according to your requirement */
+    height: 100px; /* Adjust according to your requirement */
+    border-radius: 50px;
+    border: 1px solid grey;
+}
+
+.slickImg:hover {
+    cursor: pointer;
+    border-color: grey;
+}
+
+.slick-next:before,
+.slick-prev:before {
+    color: grey;
+}
+
+.slick-prev {
+    margin-left: 5px;
+}
+
+.slick-next {
+    margin-right: 5px;
+}
+
+/* Responsive Slides Settings */
+.rslides {
+    position: relative;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.rslides li {
+    position: absolute;
+    display: none;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.rslides li:first-child {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.rslides img {
+    display: block;
+    height: auto;
+    float: left;
+    width: 500px;
+    border: 0;
+}
+
+.rslides {
+    z-index: 1; /* Set a lower z-index value than the login form */
+}
+
+/* Enhanced Table Styling */
+table.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+}
+
+table.student-table th, table.student-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table.student-table th {
+    background-color: #5EFC8D;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table.student-table tr:nth-child(even) {
+    background-color: #5efc8d50;
+}
+
+table.student-table tr:hover {
+    background-color: #ddd;
+}
+
+table.student-table th, table.student-table td {
+    text-align: center;
+    padding: 12px 15px;
+}
+
+a.btn {
+    margin-top: 20px;
+    display: inline-block;
+}
