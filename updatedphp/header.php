@@ -41,7 +41,7 @@
     <!-- Slimmenu CSS -->
     <link rel="stylesheet" href="css/slimmenu.min.css" type="text/css">
 
-    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
     <title><?php echo $title; ?></title>
 </head>
 
