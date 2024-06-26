@@ -26,7 +26,7 @@ $subjects_result = $connection->query("SELECT subject_id, subject_name FROM subj
         }
         ?>
     </select><br>
-    <input id="selected_subject_name" name="name" value='Math' type="hidden" />
+    <input id="selected_subject_name" name="subject_name" value='Math' type="hidden" />
     <input type='submit' value='View Students' class='btn'>
 </form>
 
