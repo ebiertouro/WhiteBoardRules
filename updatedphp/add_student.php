@@ -22,21 +22,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $lastName = $_POST["lastName"];
     $birthday = $_POST["birthday"];
 
-    // Insert data into the database
-    $sql = "INSERT INTO students (student_id, first_name, last_name, birthday) VALUES ('$id', '$firstName', '$lastName', '$birthday')";
+    // Check if the student with the same ID already exists
+    $checkExistence = $connection->query("SELECT * FROM students WHERE student_id = '$id'");
 
-    if ($connection->query($sql) === TRUE) {
-        echo "<p>Student added to database successfully!</p>";
+    if ($checkExistence->num_rows > 0) {
+        echo "<p>Student with ID $id already exists. Please choose a different ID.</p>";
+        echo "<p><a href='students.php'>Back to Students Page</a></p>";
     } else {
-        echo "Error: " . $sql . "<br>" . $connection->error;
-    }
-    // Insert data into the database
-    $sql = "INSERT INTO student_subject (student_id, subject_id) VALUES ('$id', '" . $_GET['subject_id'] . "')";
+        // Insert data into the database
+        $sql = "INSERT INTO students (student_id, first_name, last_name, birthday) VALUES ('$id', '$firstName', '$lastName', '$birthday')";
 
-    if ($connection->query($sql) === TRUE) {
-        echo "<p>Student added to subject id " . $_GET['subject_id'] . " successfully!</p>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $connection->error;
+        if ($connection->query($sql) === TRUE) {
+            echo "<p>Student added to database successfully!</p>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $connection->error;
+        }
+
+        // Insert data into the database
+        $sql = "INSERT INTO student_subject (student_id, subject_id) VALUES ('$id', '" . $_GET['subject_id'] . "')";
+
+        if ($connection->query($sql) === TRUE) {
+            echo "<p>Student added to subject id " . $_GET['subject_id'] . " successfully!</p>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $connection->error;
+        }
     }
 }
 
