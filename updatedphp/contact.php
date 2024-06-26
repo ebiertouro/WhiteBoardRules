@@ -5,7 +5,7 @@ include "header.php";
 // Initialize $user_email variable
 $user_email = '';
 // Check if au_id is stored in session
-if(isset($_SESSION['au_id']) & $_SESSION['au_id'] !='') {
+if(isset($_SESSION['au_id'])) {
     $au_id = $_SESSION['au_id'];
 
  

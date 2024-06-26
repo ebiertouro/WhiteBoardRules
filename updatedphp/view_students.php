@@ -44,7 +44,7 @@ $connection->close();
 ?>
 
 <!-- HTML starts here -->
-<h2>Student List</h2>
+<h2>Student List for <?php echo $_GET['name']?></h2>
 <div class="form-border">
     <table class="student-table">
         <thead>
