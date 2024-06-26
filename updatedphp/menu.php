@@ -36,7 +36,12 @@
                 if ($title == "Log Out") {
                     echo 'active';
                 }
-                echo '" href="./home_logged_in.php">Log Out</a></li>';
+                echo '" href="process_log_out.php">Log Out</a></li>';
+            }
+            else{
+                if($title != "Home"){
+                    header('Location: index.php');
+                }
             }
         ?>
     </ul>
