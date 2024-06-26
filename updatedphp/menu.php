@@ -39,7 +39,7 @@
                 echo '" href="process_log_out.php">Log Out</a></li>';
             }
             else{
-                if($title != "Home" & $title != "ContactUs"){
+                if($title != "Home" & $title != "ContactUs" & $title != "Teacher Sign-Up" & $title != "Sign-Up Response"   ){
                     header('Location: index.php');
                 }
             }

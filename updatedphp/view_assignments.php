@@ -13,22 +13,23 @@ $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
-/*
+
 // Handle form submission
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // Retrieve form data
-    $student_id = $_POST["student_id"];
+    $assignment_name = $_GET["assignment_name"];
+    $subject_id = $_GET['subject_id'];
 
     // Insert data into the database
-    $sql = "INSERT INTO student_subject (student_id, subject_id) VALUES ('$student_id', '" . $_GET['subject_id'] . "')";
+    $sql = "INSERT INTO assignments (assignment_name,subject_id) VALUES ('$assignment_name', '$subject_id')";
 
     if ($connection->query($sql) === TRUE) {
-        echo "<p>Student added to subject id " . $_GET['subject_id'] . " successfully!</p>";
+        echo "<p>Assignment added to subject id " . $_GET['subject_id'] . " successfully!</p>";
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
 }
-*/
+
 // Query to retrieve students from the database
 $query = "SELECT assignment_id, assignment_name from assignments  WHERE subject_id =" . $_GET['subject_id'];
 
@@ -40,7 +41,7 @@ $connection->close();
 ?>
 
 <!-- HTML starts here -->
-<h2>Assignment List</h2>
+<h2>Assignment List for <?php echo $_GET['name'] ?></h2>
 <div class="form-border">
     <table class="student-table">
         <thead>
@@ -59,8 +60,9 @@ $connection->close();
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['assignment_id']) . "</td>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['assignment_name']) . "</td>";
                     //echo "<td class='student-table-data'>" . htmlspecialchars($row['average_grade']) . "</td>";
-                    echo "<td class='student-table-data' </td>";echo "<td class='student-table-data' </td>";
-                    
+                    echo "<td class='student-table-data' </td>";
+                    echo "<td class='student-table-data' </td>";
+
                     echo "</tr>";
                 }
             } else {
@@ -73,21 +75,15 @@ $connection->close();
 
 </br>
 <div class="form-border">
-    <h4>Add Existing Student</h4>
-    <form action='view_students.php?subject_id=<?php echo $_GET['subject_id']; ?>'' method=' post'>
-        <select name='student_id' required>
-            <?php
-            while ($studentRow = $possibleStudents->fetch_assoc()) :
-            ?>
-                <option value='<?php echo $studentRow['student_id']; ?>'>
-                    <?php echo $studentRow['first_name'] . ' ' . $studentRow['last_name']; ?>
-                </option>
-            <?php endwhile; ?>
-        </select>
+    <h4>Add Assignment</h4>
+    <form action='view_assignments.php' method='get'>
+        <label for='assignment_name'>Name:</label>
+        <input type='text' name='assignment_name' required>
+        <input type='hidden' name='subject_id' value='<?php echo $_GET['subject_id']; ?>' required>
+        <input type='hidden' name='name' value='<?php echo $_GET['name']; ?>' required>
+        
         <input type='submit' value='Add' class='btn'>
     </form>
 </div>
 </br>
-<a class='btn' href='add_student.php?subject_id=<?php echo $_GET['subject_id']; ?>'>Add New Student</a>
-
 <?php include "footer.php"; ?>
