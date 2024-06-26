@@ -39,21 +39,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select name="subject" class="subject form-select" id="subject" s>
-                            <option value="Math">Math</option>
-                            <option value="English">English</option>
-                            <option value="Chemistry">Chemistry</option>
-                            <option value="Global History">Global History</option>
-                            <option value="American History">American History</option>
-                            <option value="Biology">Biology</option>
-                            <option value="Geometry">Geometry</option>
-                            <option value="Trigonometry">Trigonometry</option>
-                            <option value="Home Economics">Home Economics</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <h6 style="margin-top:10px;">Grade Level</h6>
                         <div>
                             <div class="radio form-check">
