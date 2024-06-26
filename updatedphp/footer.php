@@ -4,7 +4,7 @@
 </div>
 
 <!-- Include Slimmenu JS -->
-<script src="js/jquery.slimmenu.min.js"></script>
+<script src="js/jquery.slimmenu.js"></script>
 
 <!-- Initialize Slimmenu -->
 <script>

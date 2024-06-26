@@ -35,14 +35,11 @@ $title = "Log in";
                         <div class="button-group">
                             <button type="submit" class="btn">Login</button>
                         </div>
-                        <p style="text-align:center">Not Registered? <a href="sign_up.php">Sign Up</a></p>
+                        <a class="btn" href="sign_up.php" style="text-align:center; margin-top: 10px;">Not Registered? Sign Up</a>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-
-    <div class="signUp">
     </div>
 </div>
 </div>
