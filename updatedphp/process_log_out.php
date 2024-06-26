@@ -9,6 +9,8 @@
 
     setcookie('UserName', "", time()-3600);
     $_SESSION["LoggedIn"] = FALSE;
+    $_SESSION['au_id'] = '';
+    unset($_SESSION['au_id']);
 
     $seconds = 5;
     $homePage = 'index.php';
