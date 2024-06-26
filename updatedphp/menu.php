@@ -30,7 +30,7 @@
                 if ($title == "Report Cards") {
                     echo 'active';
                 }
-                echo '" href="./report_cards.php">Report Cards</a></li>';
+                echo '" href="./select_student.php">Report Cards</a></li>';
                 
                 echo '<li class="navItem"><a class="nav ';
                 if ($title == "Log Out") {
