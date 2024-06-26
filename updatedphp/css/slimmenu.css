@@ -1,0 +1,253 @@
+.navigation {
+  box-sizing: border-box;
+  overflow: auto;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  margin: 0 /*!important */;
+  background-color: #5EFC8D; /* Set background color to match the header */
+  padding: 10px 0; /* Add padding for spacing */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center align items vertically */
+  justify-content: flex-start; /* Align items to the left */
+}
+
+#header {
+  background-color: #5EFC8D;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  margin-right: 10px; /* Add spacing between logo and slogan */
+  align-self: flex-start; /* Align the logo to the top of the container */
+  display: inline-block; /* Ensure the logo does not take full width */
+}
+
+#slogan {
+  max-height: 80px; /* Ensure the slogan matches the height of the logo */
+  width: auto;
+  display: inline-block; /* Ensure the slogan does not take full width */
+}
+
+
+
+.navItem {
+  color: #FFF !important;
+  display: inline-block;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav {
+  color: #FFF;
+  text-decoration: none;
+  padding: 15px 10px;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+.nav:hover {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #082D0F;
+}
+
+.active {
+  color: #082D0F;
+  font-weight: bold;
+}
+
+/* Slimmenu Integration */
+.menu-collapser {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  padding: 0 8px;
+  color: #FFF;
+  font-size: 16px;
+  line-height: 48px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.collapse-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 40px;
+  padding: 7px 10px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+
+  transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  &:hover,
+  &:focus {
+    color: #FFF;
+    background-color: #040404;
+  }
+
+  .icon-bar {
+    display: block;
+    height: 2px;
+    width: 18px;
+    margin: 2px 0;
+    background-color: #F5F5F5;
+    border-radius: 1px;
+  }
+}
+
+ul.slimmenu {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  &.collapsed {
+    li {
+      display: block;
+      width: 100%;
+
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+
+      > ul {
+        position: static;
+        display: none;
+      }
+
+      a {
+        display: block;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
+
+      .sub-toggle {
+        height: 40px;
+      }
+    }
+  }
+
+  li {
+    position: relative;
+    float: left;
+    display: inline-block;
+    background-color: #5EFC8D; /* Set background color to match the header */
+    padding: 0 10px; /* Adjust padding as needed */
+
+    ul {
+      margin: 0;
+      list-style-type: none;
+
+      li {
+        background: #5EFC8D; /* Adjust submenu background color */
+      }
+    }
+
+    > ul {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      z-index: 999;
+      display: none;
+      width: 100%;
+
+      > li ul {
+        position: absolute;
+        left: 100%;
+        top: 0;
+        z-index: 999;
+        display: none;
+        width: 100%;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 12px 64px 12px 16px;
+      color: #333;
+      font-size: 16px;
+      font-weight: 400;
+      transition: background-color 0.5s ease-out;
+      -o-transition: background-color 0.5s ease-out;
+      -moz-transition: background-color 0.5s ease-out;
+      -webkit-transition: background-color 0.5s ease-out;
+
+      &:hover {
+        text-decoration: none;
+        background-color: #082D0F; /* Adjust hover background color */
+      }
+    }
+
+    .sub-toggle {
+      background: none repeat scroll 0 0 rgba(0, 0, 0, 0.075);
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 999;
+      width: 48px;
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        margin-right: -0.25em;
+        vertical-align: middle;
+      }
+
+      > i {
+        display: inline-block;
+        color: #333;
+        font-size: 18px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  > li {
+    border-left: 1px solid #999;
+
+    &:first-child,
+    &.has-submenu + li {
+      border-left: 0;
+    }
+  }
+}
