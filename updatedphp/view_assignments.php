@@ -57,8 +57,6 @@ $connection->close();
             <tr>
                 <th class="student-table-header">ID</th>
                 <th class="student-table-header">Assignment Name</th>
-                <th class="student-table-header">Average Grade</th>
-                <th class="student-table-header">Add Grade</th>
             </tr>
         </thead>
         <tbody>
@@ -68,9 +66,6 @@ $connection->close();
                     echo "<tr>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['assignment_id']) . "</td>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['assignment_name']) . "</td>";
-                    //echo "<td class='student-table-data'>" . htmlspecialchars($row['average_grade']) . "</td>";
-                    echo "<td class='student-table-data' </td>";
-                    echo "<td class='student-table-data' </td>";
 
                     echo "</tr>";
                 }
