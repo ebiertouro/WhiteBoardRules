@@ -34,7 +34,7 @@ function connectToDB() {
 const db = connectToDB();
 
 // Route for home page
-app.get('/', (req, res) => {
+app.get(['/', '/home', '/index'], (req, res) => {
     res.render('home', {
         title: 'Home'
     });
@@ -100,7 +100,7 @@ app.post('/add_student', (req, res) => {
 function addStudent(req, res) {
     const { id, firstName, lastName, birthday } = req.body;
     const studentQuery = `INSERT INTO students (student_id, first_name, last_name, birthday) VALUES ('${id}', '${firstName}', '${lastName}', '${birthday}')`;
-   
+
     db.query(studentQuery, (err, result) => {
         if (err) {
             console.error('Error inserting student:', err);
@@ -128,55 +128,95 @@ app.post('/email_records', (req, res) => {
             return;
         }
 
-        // Sending email with student records
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'white.board.rules.24@gmail.com',
-                pass: 'rwbo hcqr autj hbin'
-            }
-        });
-
-        const mailOptions = {
-            from: 'white.board.rules.24@gmail.com',
-            to: email,
-            subject: 'Student Records',
-            html: `
-                <h2>Student Records</h2>
-                <table border="1">
-                    <thead>
+        var subject = 'Student Records';
+        var html = `
+            <h2>Student Records</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${result.map(student => `
                         <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Birthday</th>
+                            <td>${student.student_id}</td>
+                            <td>${student.first_name}</td>
+                            <td>${student.last_name}</td>
+                            <td>${student.birthday}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        ${result.map(student => `
-                            <tr>
-                                <td>${student.student_id}</td>
-                                <td>${student.first_name}</td>
-                                <td>${student.last_name}</td>
-                                <td>${student.birthday}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `
-        };
+                    `).join('')}
+                </tbody>
+            </table>
+        `; 
+        sendEmail(email, subject, html);
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(`Error sending email: ${error}`);
-                res.status(500).send('Error sending email');
-            } else {
-                console.log(`Email sent: ${info.response}`);
-                res.render('confirmation', { confirmationMessage: 'Student records sent successfully!' });
-            }
-        });
+        res.render('confirmation', { confirmationMessage: 'Email sent successfully!' });
+
     });
 });
+
+app.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+app.post('/contact', (req, res) => {
+    const { name, email, message } = req.body;
+
+    var subject = 'Contact Form';
+    var html = `
+            <p>New Message from ${name} (${email}):</p>
+            <p>${message}</p>
+        `;
+    sendEmail('white.board.rules.24@gmail.com', subject, html);
+
+    subject = 'Message Confirmation';
+    html = `
+            <p>We have received the following message:</p>
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+            <p>Message: ${message}</p>
+        `;
+    sendEmail(email, subject, html);
+
+    res.render('confirmation', { confirmationMessage: 'Email sent successfully!' });
+
+
+
+});
+
+
+
+// function to send email
+function sendEmail(email, subject, html) {
+    var successfull = false;
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'white.board.rules.24@gmail.com',
+            pass: 'rwbo hcqr autj hbin'
+        }
+    });
+
+    const mailOptions = {
+        from: 'white.board.rules.24@gmail.com',
+        to: email,
+        subject: subject,
+        html: html
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(`Error sending email: ${error}`);
+        } else {
+            console.log(`Email sent: ${info.response}`);
+
+        }
+    });
+}
 
 // 404 page
 app.use(function (req, res, next) {
