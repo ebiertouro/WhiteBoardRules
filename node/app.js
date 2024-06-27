@@ -88,27 +88,8 @@ function getStudentsForEmail(res) {
 
 // Route to render form to add a student
 app.get('/add_student', (req, res) => {
-    try {
-        var allClassNames = [];
-        getClassNames(allClassNames, res);
-    } catch (error) {
-        console.log('Error with database:', error);
-        res.status(500).send('Error fetching class names for adding student');
-    }
+    res.render('add_student');
 });
-
-// Get all class names for adding a student
-function getClassNames(names, res) {
-    const classQuery = 'SELECT class_id FROM classes';
-    db.query(classQuery, (err, classResult) => {
-        if (err) {
-            console.error('Error fetching class names:', err);
-            res.status(500).send('Error fetching class names');
-            return;
-        }
-        res.render('add_student', { classes: classResult });
-    });
-}
 
 // Handle form submission to add a student
 app.post('/add_student', (req, res) => {
@@ -117,24 +98,16 @@ app.post('/add_student', (req, res) => {
 
 // Add the student to the database
 function addStudent(req, res) {
-    const { id, firstName, lastName, birthday, classID } = req.body;
+    const { id, firstName, lastName, birthday } = req.body;
     const studentQuery = `INSERT INTO students (student_id, first_name, last_name, birthday) VALUES ('${id}', '${firstName}', '${lastName}', '${birthday}')`;
-    const studentClassQuery = `INSERT INTO student_classes (student_id, class_id) VALUES ('${id}', '${classID}')`;
-
+   
     db.query(studentQuery, (err, result) => {
         if (err) {
             console.error('Error inserting student:', err);
             res.status(500).send('Error inserting student');
             return;
         }
-        db.query(studentClassQuery, (err, result) => {
-            if (err) {
-                console.error('Error inserting student class:', err);
-                res.status(500).send('Error inserting student class');
-                return;
-            }
-            res.redirect('/view_students');
-        });
+        res.redirect('/view_students');
     });
 }
 
