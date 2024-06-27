@@ -1,5 +1,3 @@
-// script.js
-
 function downloadPDF() {
     // 'deactivate' button
     $('#downloadBtn').html("downloading...");
@@ -8,6 +6,9 @@ function downloadPDF() {
     // get values
     var student_id = $('input[name="student_id"]').val();
     var student_name = $('input[name="student_name"]').val();
+    var teacher_name = $('input[name="teacher_name"]').val();
+    var school_name = $('input[name="school_name"]').val();
+    var grade_level = $('input[name="grade_level"]').val();
     var grades = "["
     $(".student-table-row").each(function (i) {
         if (i != 0) grades += ",";
@@ -18,8 +19,7 @@ function downloadPDF() {
     });
     grades += "]";
 
-    var dataString= '{"teacherName":"Malka Shin","schoolName":"Toras Emes","student":{"name":"' + student_name + '","id":"' + student_id + '","grades":' + grades + '}}';
-
+    var dataString = '{"teacherName":"' + teacher_name + '","schoolName":"' + school_name + '","gradeLevel":"' + grade_level + '","student":{"name":"' + student_name + '","id":"' + student_id + '","grades":' + grades + '}}';
     const settings = {
         async: true,
         crossDomain: true,
@@ -42,8 +42,4 @@ function downloadPDF() {
         $('#downloadBtn').html("Generate Again");
         $('#downloadBtn').css("background-color", "#5EFC8D");
     });
-
-    
-
 }
-
