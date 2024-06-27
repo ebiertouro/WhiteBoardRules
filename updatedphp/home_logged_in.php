@@ -46,7 +46,7 @@ $connection->close();
                     echo "<tr>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['subject_id']) . "</td>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['subject_name']) . "</td>";
-                    echo "<td class='student-table-data'><a href='view_students.php?subject_id=". $row['subject_id'] ."&name=". $row['subject_name'] ."'>View Students</a></td>";
+                    echo "<td class='student-table-data'><a class='btn' href='view_students.php?subject_id=". $row['subject_id'] ."&name=". $row['subject_name'] ."'>View Students</a></td>";
                     echo "</tr>";
                 }
             } else {

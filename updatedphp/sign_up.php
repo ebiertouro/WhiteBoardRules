@@ -12,6 +12,14 @@
                     <h2>Account Information</h2>
 
                     <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" name="first_name" id="first_name" autocomplete="yes"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" id="last_name" autocomplete="yes"/>
+                    </div>
+                    <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" name="username" id="username" autocomplete="yes"/>
                     </div>
@@ -60,10 +68,6 @@
                             <div class="radio form-check">
                                     <input type="radio" name="age" value="Graduate" id="graduate"/> 
                                     <label for="Graduate">Graduate</label>
-                            </div>
-                            <div class="radio form-check">
-                                    <input type="radio" name="age" value="other" id="ageOther" /> 
-                                    <label for="Other">Other</label>
                             </div>
                         </div>
                     </div>

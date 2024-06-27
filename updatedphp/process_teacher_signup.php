@@ -29,6 +29,8 @@ include "header.php";
     // Handle form submission
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Retrieve and sanitize form data
+        $first_name = mysqli_real_escape_string($connection, $_POST["first_name"]);
+        $last_name = mysqli_real_escape_string($connection, $_POST["last_name"]);
         $username = mysqli_real_escape_string($connection, $_POST["username"]);
         $password = mysqli_real_escape_string($connection, $_POST["password"]);
         $school_name = mysqli_real_escape_string($connection, $_POST["SchoolName"]);
@@ -44,7 +46,10 @@ include "header.php";
             $au_id = $connection->insert_id;
 
             // Insert data into teachers table
-            $insert_teachers_sql = "INSERT INTO teachers (au_id, email, username, school_name, grade_level) VALUES ('$au_id', '$email', '$username', '$school_name', '$grade_level')";
+            $insert_teachers_sql = "INSERT INTO teachers 
+            (t_first_name, t_last_name, au_id, email, username, school_name, grade_level) 
+            VALUES
+             ('$first_name', '$last_name', '$au_id', '$email', '$username', '$school_name', '$grade_level')";
 
             if ($connection->query($insert_teachers_sql) === TRUE) {
                 echo "<p>Teacher added successfully!</p>";
@@ -60,8 +65,8 @@ include "header.php";
     $connection->close();
 
     // Redirect to the logged-in home page
-    $loggedin = 'home_logged_in.php';  
-    echo "<meta http-equiv='refresh' content=5;url={$loggedin}'>";
+    $loggedin = "home_logged_in.php";  
+    echo "<meta http-equiv='refresh' content=5;url={$loggedin}>";
 
     include "footer.php";
 ?>
