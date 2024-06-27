@@ -15,9 +15,4 @@ block content
       label(for="birthday") Birthday:
       input(type="date" name="birthday" required)
       br
-      label(for="classID") Class ID:
-      select(name="classID" required)
-        each cls in classes
-          option(value=cls.class_id) #{cls.class_id}
-      br
       input(type="submit" class="btn" value="Add Student")
