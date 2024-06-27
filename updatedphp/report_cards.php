@@ -135,11 +135,37 @@ if (isset($_POST['student_id'])) {
         echo '</tr>';
     }
 
+
+    // get teacher info
+    if(isset($_SESSION['au_id'])) {
+        $au_id = $_SESSION['au_id'];
+        $teacher_info_query = "SELECT t_first_name, t_last_name, school_name, grade_level
+                               FROM teachers
+                               WHERE au_id = '$au_id'";
+    
+        $teacher_result = $connection->query($teacher_info_query);
+    
+        if ($teacher_result && $teacher_result->num_rows > 0) {
+            $teacher_row = $teacher_result->fetch_assoc();
+            $teacher_name = $teacher_row['t_first_name'] . " " . $teacher_row['t_last_name'];
+            $school_name = $teacher_row['school_name'];
+            $grade_level = $teacher_row['grade_level'];
+        } else {
+            echo "Teacher information not found.";
+        }
+    } else {
+        echo "Session 'au_id' is not set or empty.";
+    }
     // Close table and form
+
+    
     echo '</tbody>';
     echo '</table>';
     echo '<input type="hidden" name="student_id" value="'.$student_id.'">';
     echo '<input type="hidden" name="student_name" value="'.$student_name.'">';
+    echo '<input type="hidden" name="teacher_name" value="'.$teacher_name.'">';
+    echo '<input type="hidden" name="school_name" value="'.$school_name.'">';
+    echo '<input type="hidden" name="grade_level" value="'.$grade_level.'">';
     echo '<br></br>';
     
     //echo '<button class="btn" type="submit" onClick="downloadPDF()">Generate PDF</button>';
