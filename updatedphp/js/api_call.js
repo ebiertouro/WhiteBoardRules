@@ -1,6 +1,25 @@
 // script.js
 
 function downloadPDF() {
+    // 'deactivate' button
+    $('#downloadBtn').html("downloading...");
+    $('#downloadBtn').css("background-color", "lightgray");
+
+    // get values
+    var student_id = $('input[name="student_id"]').val();
+    var student_name = $('input[name="student_name"]').val();
+    var grades = "["
+    $(".student-table-row").each(function (i) {
+        if (i != 0) grades += ",";
+        grades += "{"
+        grades += '"subject" : "' + $(this).find('.subject_name').text() + '",';
+        grades += '"grade" : "' + $(this).find('.average_grade').text() + '",';
+        grades += '"comment" : "' + $(this).find('.comment-cell').text() + '"}';
+    });
+    grades += "]";
+
+    var dataString= '{"teacherName":"Malka Shin","schoolName":"Toras Emes","student":{"name":"' + student_name + '","id":"' + student_id + '","grades":' + grades + '}}';
+
     const settings = {
         async: true,
         crossDomain: true,
@@ -13,16 +32,18 @@ function downloadPDF() {
             'X-RapidAPI-Host': 'apitemplate1.p.rapidapi.com'
         },
         processData: false,
-        data: JSON.stringify({
-            
-            
-            
-        })
-    };
+        data: dataString
+        };
 
     $.ajax(settings).done(function (response) {
-        console.log(response.download_url);
+        //console.log(response.download_url);
         window.open(response.download_url);
+        // un'deactivate' button
+        $('#downloadBtn').html("Generate Again");
+        $('#downloadBtn').css("background-color", "#5EFC8D");
     });
+
+    
+
 }
 
