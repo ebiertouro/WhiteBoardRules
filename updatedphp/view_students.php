@@ -13,16 +13,13 @@ $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
-// Handle form submission
-if (isset($_GET['subject_id'])) {
-    $subject_id = $_GET['subject_id'];
-    $subject_name= $_GET['subject_name'];
-    setcookie("subject_id", $_GET['subject_id']);
-    setcookie("subject_name", $_GET['subject_name']);
-} else{
-    $subject_id = $_COOKIE['subject_id'];
-    $subject_name= $_COOKIE['subject_name'];
+
+// Check if subject_id is set in the URL
+if (!isset($_GET['subject_id'])) {
+    die("Error: subject_id is not specified.");
 }
+
+$subject_id = $_GET['subject_id'];
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -33,29 +30,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sql = "INSERT INTO student_subject (student_id, subject_id) VALUES ('$student_id', '$subject_id')";
 
     if ($connection->query($sql) === TRUE) {
-        echo "<p>Student added to subject id '$subject_id' successfully!</p>";
+        echo "<p>Student added to subject id $subject_id successfully!</p>";
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
 }
 
-// Query to retrieve students from the database
-$query = "SELECT students.student_id, first_name, last_name, birthday FROM students join student_subject on students.student_id = student_subject.student_id WHERE subject_id=$subject_id";
+// Query to retrieve students enrolled in the subject
+$query = "SELECT students.student_id, first_name, last_name, birthday 
+FROM students 
+JOIN student_subject ON students.student_id = student_subject.student_id 
+WHERE subject_id = $subject_id";
 
 $currentStudents = $connection->query($query);
 
-// Query to retrieve students from the database
-$query = "SELECT DISTINCT students.student_id, first_name, last_name, birthday FROM students LEFT OUTER JOIN student_subject ON students.student_id = student_subject.student_id WHERE students.student_id NOT IN( SELECT student_id FROM student_subject WHERE subject_id = $subject_id)";
+// Query to retrieve students not enrolled in the subject
+$query = "SELECT DISTINCT students.student_id, first_name, last_name, birthday 
+FROM students 
+LEFT OUTER JOIN student_subject ON students.student_id = student_subject.student_id 
+WHERE students.student_id NOT IN (
+    SELECT student_id FROM student_subject WHERE subject_id = $subject_id
+)";
 
 $possibleStudents = $connection->query($query);
 
 // Close the database connection
 $connection->close();
-
 ?>
 
 <!-- HTML starts here -->
-<h2>Student List for <?php echo $subject_name?></h2>
+<h2>Student List</h2>
 <div class="form-border">
     <table class="student-table">
         <thead>
@@ -90,13 +94,13 @@ $connection->close();
 </br>
 <div class="form-border">
     <h4>Add Existing Student</h4>
-    <form action='view_students.php' method='post'>
+    <form action='view_students.php?subject_id=<?php echo $subject_id; ?>' method='post'>
         <select name='student_id' required>
             <?php
             while ($studentRow = $possibleStudents->fetch_assoc()) :
             ?>
                 <option value='<?php echo $studentRow['student_id']; ?>'>
-                    <?php echo $studentRow['first_name'] . ' ' . $studentRow['last_name']; ?>
+                    <?php echo htmlspecialchars($studentRow['first_name'] . ' ' . $studentRow['last_name']); ?>
                 </option>
             <?php endwhile; ?>
         </select>
@@ -104,6 +108,6 @@ $connection->close();
     </form>
 </div>
 </br>
-<a class='btn' href='add_student.php?subject_id=<?php echo $subject_id ?>'>Add New Student</a>
+<a class='btn' href='add_student.php?subject_id=<?php echo $subject_id; ?>'>Add New Student</a>
 
 <?php include "footer.php"; ?>
