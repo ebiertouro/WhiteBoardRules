@@ -19,11 +19,14 @@ if ($connection->connect_error) {
 // Check if a student has been selected
 if (isset($_POST['student_id'])) {
     $student_id = $_POST['student_id'];
-
+    
+    $student_name = $_POST["student_name"];
+    
+    
     // Start form for displaying report cards
     echo '<div class="form-border">';
     echo '<form method="post">';
-    echo '<table class="student-table">';
+    echo '<table class="student-table" id="report_card_table">';
     echo '<thead>';
     echo '<tr>';
     echo '<th class="student-table-header">Subject</th>';
@@ -78,9 +81,9 @@ if (isset($_POST['student_id'])) {
             $letter_grade = 'N/A';
         }
 
-        echo "<tr data-subject-id='$subject_id' data-letter-grade='$letter_grade'>";
-        echo "<td class='student-table-data'>$subject_name</td>";
-        echo "<td class='student-table-data'>";
+        echo "<tr class='student-table-row' data-subject-id='$subject_id' data-letter-grade='$letter_grade'>";
+        echo "<td class='student-table-data subject_name'>$subject_name</td>";
+        echo "<td class='student-table-data snark_level'>";
         echo "<select name='snark_level[$subject_id]' class='snark-level-select' data-subject-id='$subject_id'>";
         echo "<option value=''>Select a snark level...</option>";
 
@@ -97,7 +100,7 @@ if (isset($_POST['student_id'])) {
         echo "</select>";
         echo "</td>";
 
-        echo "<td class='student-table-data'>$average_grade</td>";
+        echo "<td class='student-table-data average_grade'>$average_grade</td>";
 
         // Comment cell
         echo "<td class='student-table-data comment-cell' data-subject-id='$subject_id'>";
@@ -136,9 +139,12 @@ if (isset($_POST['student_id'])) {
     echo '</tbody>';
     echo '</table>';
     echo '<input type="hidden" name="student_id" value="'.$student_id.'">';
+    echo '<input type="hidden" name="student_name" value="'.$student_name.'">';
     echo '<br></br>';
-    echo '<button class="btn" type="submit">Generate PDF</button>';
+    
+    //echo '<button class="btn" type="submit" onClick="downloadPDF()">Generate PDF</button>';
     echo '</form>';
+    echo "<button id='downloadBtn' class='btn' onclick='downloadPDF()'>Generate PDF</button>";
     echo '</div>';
 
 }else {
@@ -150,10 +156,12 @@ if (isset($_POST['student_id'])) {
 $connection->close();
 
 // Output the jQuery and your script before the footer
+?>
+
+<?php
 echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
 echo '<script src="js/load_comment.js"></script>';
 echo '<script src="js/api_call.js"></script>';
-
 // Now output the footer
 include "footer.php";
 ?>

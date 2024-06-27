@@ -27,7 +27,8 @@ $connection->close();
 <h2>Select Student</h2>
 <div class="form-border">
     <form action='report_cards.php' method='post'>
-        <select name='student_id' required>
+        <select onchange="document.forms[0].selected_student_name.value = jQuery('#student_id>option:selected')[0].innerText;" name='student_id' id='student_id' required>
+        <option value='' disabled selected>Select a Student</option>
             <?php
             if ($students && $students->num_rows > 0) {
                 while ($studentRow = $students->fetch_assoc()) {
@@ -40,6 +41,8 @@ $connection->close();
             }
             ?>
         </select>
+        <input id="selected_student_name" name="student_name" value='' type="hidden" />
+    
         <input type='submit' value='View Report Card' class='btn'>
     </form>
 </div>
