@@ -29,8 +29,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Insert data into the database
     $sql = "INSERT INTO student_subject (student_id, subject_id) VALUES ('$student_id', '$subject_id')";
 
+    $subject_name_query = "SELECT subject_name FROM subjects WHERE subject_id = $subject_id";
+    $subject_result = $connection->query($subject_name_query);
+
+    // Check if the query was successful
+    if ($subject_result) {
+        // Fetch the result
+        $row = $subject_result->fetch_assoc();
+        // Get the subject name
+        $subject_name = $row['subject_name'];
+    } else {
+        // Handle the error
+        echo "Error: " . $connection->error;
+    }
+
+    $student_name_query = "SELECT first_name, last_name FROM students WHERE student_id = $student_id";
+    $student_result = $connection->query($student_name_query);
+
+    // Check if the query was successful
+    if ($student_result) {
+        // Fetch the result
+        $row = $student_result->fetch_assoc();
+        // Get the student name
+        $student_name = $row['first_name'] . " " . $row['last_name'];
+    } else {
+        // Handle the error
+        echo "Error: " . $connection->error;
+    }
+
     if ($connection->query($sql) === TRUE) {
-        echo "<p>Student added to subject id $subject_id successfully!</p>";
+        echo "<p>$student_name successfully added to $subject_name!</p>";
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
@@ -91,7 +119,7 @@ $connection->close();
     </table>
 </div>
 
-</br>
+<br>
 <div class="form-border">
     <h4>Add Existing Student</h4>
     <form action='view_students.php?subject_id=<?php echo $subject_id; ?>' method='post'>
@@ -107,7 +135,7 @@ $connection->close();
         <input type='submit' value='Add' class='btn'>
     </form>
 </div>
-</br>
+<br>
 <a class='btn' href='add_student.php?subject_id=<?php echo $subject_id; ?>'>Add New Student</a>
 
 <?php include "footer.php"; ?>
