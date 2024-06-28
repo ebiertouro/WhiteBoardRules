@@ -1,5 +1,5 @@
 <?php
-$title = "Assignments";
+$title = "Add Grade";
 include "header.php";
 ?>
 
