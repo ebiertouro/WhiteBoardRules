@@ -1,10 +1,7 @@
 <?php
 $title = "Assignments";
 include "header.php";
-?>
 
-<h2>Assignments</h2>
-<?php
 // Connect to the database
 $dbhost = '127.0.0.1';
 $dbuser = 'root';
@@ -16,23 +13,29 @@ $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
-// Retrieve subjects from the database
-$subjects_result = $connection->query("SELECT subject_id, subject_name FROM subjects"); ?>
-<form action='view_assignments.php' method='get' id='gradeForm'>
-    <label for='subject_id'>Select Subject:</label>
-    <select onchange="document.forms[0].selected_subject_name.value = jQuery('#subject_id>option:selected')[0].innerText;" name='subject_id' id='subject_id' required>
 
+// Retrieve subjects from the database
+$subjects_result = $connection->query("SELECT subject_id, subject_name FROM subjects");
+
+?>
+
+<h2>Assignments</h2>
+
+<form id="assignmentForm">
+    <label for="subject_id">Select Subject:</label>
+    <select name="subject_id" id="subject_id" required>
+        <option value="">Select a Subject</option>
         <?php
+        // Display options for subjects retrieved from database
         while ($row = $subjects_result->fetch_assoc()) {
             echo "<option value='{$row['subject_id']}'>{$row['subject_name']}</option>";
         }
         ?>
     </select><br>
-    <input id="selected_subject_name" name="subject_name" value='Math' type="hidden" />
-    <input type='submit' value='View Assignments' class='btn'>
+    <input type="button" onclick="viewAssignments()" value="View Assignments" class="btn">
+    <input type="button" onclick="addGrade()" value="Enter a Grade" class="btn">
 </form>
 
-<br>
 <?php
 // Close the database connection
 $connection->close();
@@ -40,5 +43,18 @@ $connection->close();
 include "footer.php";
 ?>
 
-<!-- JavaScript in its own file (ajax.js) -->
-<script src="js/ajax.js"></script>
+<script>
+    function viewAssignments() {
+        var subjectId = document.getElementById('subject_id').value;
+        if (subjectId !== '') {
+            window.location.href = 'view_assignments.php?subject_id=' + subjectId;
+        }
+    }
+
+    function addGrade() {
+        var subjectId = document.getElementById('subject_id').value;
+        if (subjectId !== '') {
+            window.location.href = 'add_grade.php?subject_id=' + subjectId;
+        }
+    }
+</script>

@@ -18,19 +18,14 @@ if ($connection->connect_error) {
 // Handle form submission
 if (isset($_GET['subject_id'])) {
     $subject_id = $_GET['subject_id'];
-    $subject_name= $_GET['subject_name'];
-    setcookie("subject_id", $_GET['subject_id']);
-    setcookie("subject_name", $_GET['subject_name']);
-} else{
-    $subject_id = $_COOKIE['subject_id'];
-    $subject_name= $_COOKIE['subject_name'];
 }
+
+// Insert data into the database
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve form data
     $assignment_name = $_POST["assignment_name"];
 
-    // Insert data into the database
-    $sql = "INSERT INTO assignments (assignment_name,subject_id) VALUES ('$assignment_name', '$subject_id')";
+    $sql = "INSERT INTO assignments (assignment_name, subject_id) VALUES ('$assignment_name', '$subject_id')";
     
     if ($connection->query($sql) === TRUE) {
         echo "<p>Assignment added to subject id $subject_id successfully!</p>";
@@ -39,10 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Query to retrieve students from the database
-$query = "SELECT assignment_id, assignment_name from assignments  WHERE subject_id = $subject_id";
-
+// Query to retrieve assignments from the database
+$query = "SELECT assignment_id, assignment_name FROM assignments WHERE subject_id = $subject_id";
 $assignments = $connection->query($query);
+
+// Query to retrieve the subject name
+$subject_name_query = "SELECT subject_name FROM subjects WHERE subject_id = $subject_id";
+$subject_name_result = $connection->query($subject_name_query);
+
+$row = $subject_name_result->fetch_assoc();
+$subject_name = $row['subject_name'];
 
 // Close the database connection
 $connection->close();
@@ -50,7 +51,7 @@ $connection->close();
 ?>
 
 <!-- HTML starts here -->
-<h2>Assignment List for <?php echo $subject_name?></h2>
+<h2>Assignment List for <?php echo $subject_name; ?></h2>
 <div class="form-border">
     <table class="student-table">
         <thead>
@@ -66,25 +67,24 @@ $connection->close();
                     echo "<tr>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['assignment_id']) . "</td>";
                     echo "<td class='student-table-data'>" . htmlspecialchars($row['assignment_name']) . "</td>";
-
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No students found.</td></tr>";
+                echo "<tr><td colspan='2'>No assignments found.</td></tr>";
             }
             ?>
         </tbody>
     </table>
 </div>
 
-</br>
+<br>
 <div class="form-border">
     <h4>Add Assignment</h4>
-    <form action='view_assignments.php' method='post'>
+    <form action='view_assignments.php?subject_id=<?php echo $subject_id; ?>' method='post'>
         <label for='assignment_name'>Name:</label>
         <input type='text' name='assignment_name' required>
         <input type='submit' value='Add' class='btn'>
     </form>
 </div>
-</br>
+<br>
 <?php include "footer.php"; ?>

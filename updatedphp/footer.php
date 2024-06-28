@@ -1,5 +1,5 @@
 <hr />
-<div id="footer">
+<div id="footer"  style="padding: 5px; width: 100%; text-align: center; position: fixed; bottom: 0; left: 0;>
     <p><a class="urlBare" href="contact.php">Contact Us</a></p>
 </div>
 
